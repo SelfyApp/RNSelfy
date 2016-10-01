@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Platform } from 'react-native'
 import NavigationBar from 'react-native-navbar'
-import { colors } from '~/styles'
+import { colors } from './../../styles'
 
 ReactModoroNavbar.propTypes = {
   title: PropTypes.string.isRequired,

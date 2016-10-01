@@ -1,8 +1,8 @@
-import { ref } from '~/config/constants'
-import { fetchScore, increaseScore, decreaseScore } from '~/api/scores'
-import { fetchUser } from '~/api/users'
-import { addUser, addMultipleUsers } from '~/redux/modules/users'
-import { showFlashNotification } from '~/redux/modules/flashNotification'
+import { ref } from './../../config/constants'
+import { fetchScore, increaseScore, decreaseScore } from './../../api/scores'
+import { fetchUser } from './../../api/users'
+import { addUser, addMultipleUsers } from './../../redux/modules/users'
+import { showFlashNotification } from './../../redux/modules/flashNotification'
 
 const FETCHING_SCORE = 'FETCHING_SCORE'
 const FETCHING_SCORE_SUCCESS = 'FETCHING_SCORE_SUCCESS'

@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react'
 import { ListView } from 'react-native'
-import { Leaderboard } from '~/components'
+import { Leaderboard } from './../../components'
 import { connect } from 'react-redux'
-import { fetchAndSetScoresListener } from '~/redux/modules/scores'
-import Leader from '~/components/Leaderboard/Leader'
+import { fetchAndSetScoresListener } from './../../redux/modules/scores'
+import Leader from './../../components/Leaderboard/Leader'
 
 class LeaderboardContainer extends Component {
   static propTypes = {

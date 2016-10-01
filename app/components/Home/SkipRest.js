@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { colors, fontSizes } from '~/styles'
+import { colors, fontSizes } from './../../styles'
 
 SkipRest.propTypes = {
   onSkipRest: PropTypes.func.isRequired,

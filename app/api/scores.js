@@ -1,4 +1,4 @@
-import { ref } from '~/config/constants'
+import { ref } from './../config/constants'
 
 export function fetchScore (uid) {
   return ref.child(`scores/${uid}`)

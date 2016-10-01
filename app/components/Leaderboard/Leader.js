@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
-import { colors, fontSizes } from '~/styles'
+import { colors, fontSizes } from './../../styles'
 
 Leader.propTypes = {
   name: PropTypes.string.isRequired,

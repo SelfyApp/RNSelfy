@@ -1,4 +1,4 @@
-import { setTimer, setRest } from '~/api/settings'
+import { setTimer, setRest } from './../../api/settings'
 
 const ADD_SETTINGS_TIMER_DURATION = 'ADD_SETTINGS_TIMER_DURATION'
 const ADD_SETTINGS_REST_DURATION = 'ADD_SETTINGS_REST_DURATION'

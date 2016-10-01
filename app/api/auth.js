@@ -1,4 +1,4 @@
-import { firebaseAuth, facebookProvider, ref } from '~/config/constants'
+import { firebaseAuth, facebookProvider, ref } from './../config/constants'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 
 export function getAccessToken () {

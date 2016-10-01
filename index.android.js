@@ -1,4 +1,4 @@
 import ReactModoro from './app'
 import { AppRegistry } from 'react-native'
 
-AppRegistry.registerComponent('ReactModoro', () => ReactModoro)
+AppRegistry.registerComponent('Selfy', () => ReactModoro)

@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
-import { Home } from '~/components'
-import { incrementAndHandleScore, decrementAndHandleScore } from '~/redux/modules/scores'
+import { Home } from './../../components'
+import { incrementAndHandleScore, decrementAndHandleScore } from './../../redux/modules/scores'
 
 function secondsToHMS (secs) {
   const hours = Math.floor(secs / 3600)

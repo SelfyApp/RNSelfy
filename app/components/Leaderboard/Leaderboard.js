@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, Platform, ActivityIndicator, ListView } from 'react-native'
-import { ReactModoroNavbar, Hamburger } from '~/components'
-import { colors } from '~/styles'
+import { ReactModoroNavbar, Hamburger } from './../../components'
+import { colors } from './../../styles'
 
 Leaderboard.propTypes = {
   leaders: PropTypes.array.isRequired,

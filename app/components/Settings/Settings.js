@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { ReactModoroNavbar, Close } from '~/components'
-import { colors, fontSizes } from '~/styles'
+import { ReactModoroNavbar, Close } from './../../components'
+import { colors, fontSizes } from './../../styles'
 import Slider from 'react-native-slider'
 
 Settings.propTypes = {

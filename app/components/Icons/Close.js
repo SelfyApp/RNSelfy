@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { TouchableOpacity, Text } from 'react-native'
-import { colors } from '~/styles'
+import { colors } from './../../styles'
 
 Close.propTypes = {
   style: PropTypes.object,

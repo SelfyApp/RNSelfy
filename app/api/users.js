@@ -1,4 +1,4 @@
-import { ref } from '~/config/constants'
+import { ref } from './../config/constants'
 
 export function fetchUser (uid) {
   return ref.child(`users/${uid}`)

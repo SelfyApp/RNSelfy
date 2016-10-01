@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 import { LoginButton } from 'react-native-fbsdk'
-import { colors, fontSizes } from '~/styles'
+import { colors, fontSizes } from './../../styles'
 const { height } = Dimensions.get('window')
 
 Splash.propTypes = {

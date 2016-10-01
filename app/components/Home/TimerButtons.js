@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { PressableIcon } from '~/components'
+import { PressableIcon } from './../../components'
 
 TimerButtons.propTypes = {
   countdownRunning: PropTypes.bool.isRequired,

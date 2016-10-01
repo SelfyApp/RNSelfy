@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { colors } from '~/styles'
+import { colors } from './../../styles'
 
 Countdown.propTypes = {
   formattedTime: PropTypes.string.isRequired,

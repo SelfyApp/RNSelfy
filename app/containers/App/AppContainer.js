@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { ReactModoroNavigator } from '~/containers'
-import { PreSplash, FlashNotification } from '~/components'
-import { firebaseAuth } from '~/config/constants'
-import { onAuthChange } from '~/redux/modules/authentication'
-import { hideFlashNotification } from '~/redux/modules/flashNotification'
+import { ReactModoroNavigator } from './../../containers'
+import { PreSplash, FlashNotification } from './../../components'
+import { firebaseAuth } from './../../config/constants'
+import { onAuthChange } from './../../redux/modules/authentication'
+import { hideFlashNotification } from './../../redux/modules/flashNotification'
 
 console.disableYellowBox = true
 

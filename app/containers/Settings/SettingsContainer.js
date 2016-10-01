@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react'
 import { View, Text } from 'react-native'
-import { Settings } from '~/components'
+import { Settings } from './../../components'
 import { connect } from 'react-redux'
-import { handleUnauth } from '~/redux/modules/authentication'
-import { showFlashNotification } from '~/redux/modules/flashNotification'
-import { handleAndUpdateTimer, handleAndUpdateRest } from '~/redux/modules/settings'
+import { handleUnauth } from './../../redux/modules/authentication'
+import { showFlashNotification } from './../../redux/modules/flashNotification'
+import { handleAndUpdateTimer, handleAndUpdateRest } from './../../redux/modules/settings'
 
 class SettingsContainer extends Component {
   static propTypes = {

@@ -1,6 +1,6 @@
-import { FooterTabs } from '~/components'
+import { FooterTabs } from './../../components'
 import { connect } from 'react-redux'
-import { setFooterTab } from '~/redux/modules/activeFooterTab'
+import { setFooterTab } from './../../redux/modules/activeFooterTab'
 
 function mapStateToProps ({activeFooterTab}, {navigator}) {
   return {

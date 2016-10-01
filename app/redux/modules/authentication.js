@@ -1,7 +1,7 @@
-import { getAccessToken, authWithToken, updateUser, logout } from '~/api/auth'
-import { fetchSettings } from '~/api/settings'
-import { addSettingsTimerDuration, addSettingsRestDuration } from '~/redux/modules/settings'
-import { fetchAndHandleScore } from '~/redux/modules/scores'
+import { getAccessToken, authWithToken, updateUser, logout } from './../../api/auth'
+import { fetchSettings } from './../../api/settings'
+import { addSettingsTimerDuration, addSettingsRestDuration } from './settings'
+import { fetchAndHandleScore } from './scores'
 
 const AUTHENTICATING = 'AUTHENTICATING'
 const NOT_AUTHED = 'NOT_AUTHED'
@@ -37,7 +37,12 @@ export function handleAuthWithFirebase () {
   return function (dispatch, getState) {
     dispatch(authenticating())
     return getAccessToken()
-      .then(({accessToken}) => authWithToken(accessToken))
+      .then(({accessToken}) => {
+        console.log(accessToken)
+
+
+        // authWithToken(accessToken)
+      })
       .catch((error) => console.warn('Error in handleAuthWithFirebase: ', error))
   }
 }
