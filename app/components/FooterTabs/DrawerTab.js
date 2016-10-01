@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { colors, fontSizes } from '~/styles'
+import { colors, fontSizes } from './../../styles'
 
 DrawerTab.propTypes = {
   title: PropTypes.string.isRequired,

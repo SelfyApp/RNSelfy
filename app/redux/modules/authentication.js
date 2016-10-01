@@ -1,7 +1,7 @@
 import { getAccessToken, authWithToken, updateUser, logout } from './../../api/auth'
 import { fetchSettings } from './../../api/settings'
-import { addSettingsTimerDuration, addSettingsRestDuration } from './settings'
-import { fetchAndHandleScore } from './scores'
+import { addSettingsTimerDuration, addSettingsRestDuration } from './../../redux/modules/settings'
+import { fetchAndHandleScore } from './../../redux/modules/scores'
 
 const AUTHENTICATING = 'AUTHENTICATING'
 const NOT_AUTHED = 'NOT_AUTHED'
@@ -37,18 +37,15 @@ export function handleAuthWithFirebase () {
   return function (dispatch, getState) {
     dispatch(authenticating())
     return getAccessToken()
-      .then(({accessToken}) => {
-        console.log(accessToken)
-
-
-        // authWithToken(accessToken)
-      })
-      .catch((error) => console.warn('Error in handleAuthWithFirebase: ', error))
+      .then(({accessToken}) => authWithToken(accessToken))
+      .catch((error) => console.warn('Error in handle auth: ', error))
   }
 }
 
 export function onAuthChange (user) {
+  console.log('CALLED ON AUTH CHANGE')
   return function (dispatch) {
+    console.log(user);
     if (!user) {
       dispatch(notAuthed())
     } else {
@@ -78,11 +75,12 @@ export function handleUnauth () {
 
 const initialState = {
   isAuthed: false,
-  isAuthenticating: true,
+  isAuthenticating: false,
   authedId: '',
 }
 
 export default function authentication (state = initialState, action) {
+  console.log('Authentication Action Type: ' + action.type)
   switch (action.type) {
     case AUTHENTICATING :
       return {

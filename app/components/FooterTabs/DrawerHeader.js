@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
-import { colors, fontSizes } from '~/styles'
+import { colors, fontSizes } from './../../styles'
 
 DrawerHeader.propTypes = {
   photoURL: PropTypes.string.isRequired,

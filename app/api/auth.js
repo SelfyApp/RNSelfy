@@ -7,18 +7,18 @@ export function getAccessToken () {
 
 export function authWithToken (accesToken) {
   return firebaseAuth
-    .signInWithCredential(facebookProvider.credential(accesToken))
+    .signInWithCredential(accesToken)
 }
 
 export function updateUser (user) {
-  return Promise.all([
-    ref.child(`users/${user.uid}`).set(user),
-    ref.child(`scores/${user.uid}`).update(user)
-  ])
+  console.log('calling update user ' , user)
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, user);
+  }); 
 }
 
 export function logout () {
   LoginManager.logOut()
   firebaseAuth.signOut()
-  ref.off()
+  //ref.off()
 }

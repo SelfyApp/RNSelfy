@@ -1,41 +1,39 @@
 import { ref } from './../config/constants'
 
 export function setTimer (duration, uid) {
-  return ref.child(`settings/${uid}/timerDuration`)
-    .set(duration)
+    return new Promise(
+        // we return here all the settings related to the user uid.
+        function(resolve, reject) {
+          var settings = {
+            timerDuration: 0.1,
+            restDuration: 5
+          }
+          resolve(settings);
+        });
 }
 
 export function setRest (duration, uid) {
-  return ref.child(`settings/${uid}/restDuration`)
-    .set(duration)
+    return new Promise(
+        // we return here all the settings related to the user uid.
+        function(resolve, reject) {
+          var settings = {
+            timerDuration: 0.1,
+            restDuration: 5
+          }
+          resolve(settings);
+        });
 }
 
 export function fetchSettings (uid) {
-  return ref.child(`settings/${uid}`)
-    .once('value')
-    .then((snapshot) => {
-      const timerDuration = 20
-      const restDuration = 5
+  console.log('TRYING TO GET SETTING HERE' , uid)
+  return new Promise(
+        // we return here all the settings related to the user uid.
+        function(resolve, reject) {
+          var settings = {
+            timerDuration: 0.1,
+            restDuration: 5
+          }
+          resolve(settings);
+        });
 
-      const settings = snapshot.val()
-
-      if (settings === null) {
-        return {
-          timerDuration,
-          restDuration
-        }
-      } else if (!settings.timerDuration) {
-        return {
-          timerDuration,
-          restDuration: settings.restDuration,
-        }
-      } else if (!settings.restDuration) {
-        return {
-          restDuration,
-          timerDuration: settings.timerDuration,
-        }
-      } else {
-        return settings
-      }
-    })
 }
