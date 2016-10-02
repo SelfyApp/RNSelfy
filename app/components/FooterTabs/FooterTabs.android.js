@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, DrawerLayoutAndroid } from 'react-native'
-import { HomeContainer, LeaderboardContainer } from '~/containers'
+import { HomeContainer, LeaderboardContainer } from './../../containers'
 import Drawer from './Drawer'
 
 FooterTabs.propTypes = {
