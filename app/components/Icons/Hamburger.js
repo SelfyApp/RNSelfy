@@ -17,7 +17,7 @@ export default function Hamburger (props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={props.style}>
       <Icon
-        name='ios-menu-outline'
+        name='ios-menu'
         size={props.size}
         color={colors.white} />
     </TouchableOpacity>

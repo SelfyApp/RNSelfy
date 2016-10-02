@@ -17,7 +17,7 @@ export default function Gear (props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={props.style}>
       <Icon
-        name='ios-settings-outline'
+        name='ios-settings'
         size={props.size}
         color={colors.white} />
     </TouchableOpacity>

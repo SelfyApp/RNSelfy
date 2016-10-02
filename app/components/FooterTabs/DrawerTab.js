@@ -7,17 +7,14 @@ DrawerTab.propTypes = {
   title: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
   onPress: PropTypes.func.isRequired,
-  iconName: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
 }
 
 export default function DrawerTab (props) {
   const color = props.selected === true ? colors.blue : colors.primary
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.container}>
-      <Icon
-        name={props.iconName}
-        size={35}
-        color={color} />
+      {props.icon}
       <Text style={[{color}, styles.titleText]}>{props.title}</Text>
     </TouchableOpacity>
   )
