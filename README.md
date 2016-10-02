@@ -1,11 +1,24 @@
-[<img src="http://www.reactjsprogram.com/images/reactjsprogram-500.png" width="250" align="right">](http://reactjsprogram.com)
-
-Learn React Native
+Selfy Client in React Native
 ========
 
-####This is the repository for a project we'll build together for React.js Program's React Native course, for more information on the program [click here](http://reactjsprogram.com)
+working with:
+'''
+npm 3.8.9
+node v6.2.0
+react-native-cli: 1.0.0
+react-native: 0.34.0
+'''
 
-## Notes
-Every video is coincided with a branch. If you want to compare your code with mine or you just want to play around with the code, check out the different branches on this repository.
+Download and install node modules.
+'''
+npm install
+'''
 
-[<img src="http://www.reactjsprogram.com/images/social-banner.png" width="500" align="left">](http://twitter.com/tylermcginnis33)
+Run client version.
+'''
+react-native run-ios
+'''
+tested on ios10.0 iphone6
+'''
+react-native run-android
+'''
