@@ -11,12 +11,19 @@ import {
     PanResponder,
     Image,
     StatusBar,
-    Platform
+    Platform,
+    Dimensions
 } from 'react-native';
 
 import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
 
-
+var navigationBottomBar;
+if (Platform.OS === 'android'){
+  navigationBottomBar = 0;
+} else {
+  navigationBottomBar = 20;
+} 
+const {height, width} = Dimensions.get('window');
 import clamp from 'clamp';
 
 var SWIPE_THRESHOLD = 50;
@@ -29,6 +36,7 @@ var styles = StyleSheet.create({
       height: undefined,
       backgroundColor:'transparent',
       flexDirection: 'column',
+
     },
     containerStyle: {
       backgroundColor: 'rgba(255,255,255,.5)',
@@ -36,7 +44,7 @@ var styles = StyleSheet.create({
       alignItems: 'center',
       width: undefined,
       flexDirection: 'column',
-      flex: 1,
+      flex: 1, 
     },
     container: {
         flex: 1,
@@ -46,7 +54,7 @@ var styles = StyleSheet.create({
     yup: {
         position: 'absolute',
         padding: 20,
-        bottom: 20,
+        bottom: (height - width - 180 + navigationBottomBar)/2,
         borderRadius: 5,
         right: 20,
     },
@@ -57,7 +65,7 @@ var styles = StyleSheet.create({
     },
     nope: {
         position: 'absolute',
-        bottom: 20,
+        bottom: (height - width - 180 + navigationBottomBar)/2,
         padding: 20,
         borderRadius: 5,
         left: 20,
@@ -208,13 +216,12 @@ class SwipeCards extends Component {
                   resizeMode='cover'
                   style={styles.blurContainer}
                   >
-            <StatusBar hidden={true} />
             <ReactModoroNavbar
               title='Swipe'
               leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
               rightButton={<Gear onPress={this.props.handleToSettings}/>} />
 
-            <View style={styles.containerStyle}>
+           
                 { this.state.card
                     ? (
                     <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
@@ -256,7 +263,7 @@ class SwipeCards extends Component {
                     )
                 }
 
-            </View>
+       
           </Image>
 
     );
