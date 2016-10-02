@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, StyleSheet, Animated } from 'react-native'
+import { View, StyleSheet, Animated, Text } from 'react-native'
 import { colors } from './../../styles'
 
 export default class PreSplash extends Component {
@@ -34,6 +34,7 @@ export default class PreSplash extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <Text> Pre Splash </Text>
         <Animated.Image
           style={[styles.image, this.getTransform()]}
           source={require('../../images/logo.png')} />

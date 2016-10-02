@@ -1,12 +1,17 @@
-import { firebaseAuth, facebookProvider, ref } from './../config/constants'
+import { auth } from './../config/constants'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 
 export function getAccessToken () {
+ 
+  AccessToken.getCurrentAccessToken().then(function(token){
+
+    console.log('the token available ' + token)
+  })
   return AccessToken.getCurrentAccessToken()
 }
 
 export function authWithToken (accesToken) {
-  return firebaseAuth
+  return auth
     .signInWithCredential(accesToken)
 }
 
@@ -19,6 +24,6 @@ export function updateUser (user) {
 
 export function logout () {
   LoginManager.logOut()
-  firebaseAuth.signOut()
+  auth.signOut()
   //ref.off()
 }

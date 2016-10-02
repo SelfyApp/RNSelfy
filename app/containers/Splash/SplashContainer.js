@@ -2,16 +2,17 @@ import React, { PropTypes, Component } from 'react'
 import { View, Text } from 'react-native'
 import { Splash }  from './../../components'
 import { connect } from 'react-redux'
-import { handleAuthWithFirebase } from './../../redux/modules/authentication'
+import { handleAuthRemotely } from './../../redux/modules/authentication'
 
 class SplashContainer extends Component {
   handleLoginFinished = (error, result) => {
+    console.log('LOGIN FINISHED')
     if (error) {
       console.warn('Error in handleLoginFinished: ', error)
     } else if (result.isCancelled === true) {
       console.log('Auth cancelled')
     } else {
-      this.props.dispatch(handleAuthWithFirebase())
+      this.props.dispatch(handleAuthRemotely())
     }
   }
   render () {

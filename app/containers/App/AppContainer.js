@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { ReactModoroNavigator } from './../../containers'
 import { PreSplash, FlashNotification } from './../../components'
-import { firebaseAuth } from './../../config/constants'
-import { onAuthChange } from './../../redux/modules/authentication'
+import { auth } from './../../config/constants'
+import { onAuthChange, handleAuthRemotely } from './../../redux/modules/authentication'
 import { hideFlashNotification } from './../../redux/modules/flashNotification'
 
 console.disableYellowBox = true
@@ -19,7 +19,12 @@ class AppContainer extends Component {
     showFlashNotification: PropTypes.bool.isRequired,
   }
   componentDidMount () {
-    firebaseAuth.onAuthStateChanged((user) => this.props.dispatch(onAuthChange(user)))
+    // Attach a callback when you have a change in the user
+    auth.onAuthStateChanged((user) => this.props.dispatch(onAuthChange(user)))
+    // on bootstrap try to handle an automatic authentication
+    // for the time being is handling the case of being logged in with Facebook
+    // and the session is still available (no need to go through the auth process)
+    this.props.dispatch(handleAuthRemotely())
   }
   handleHideNotification = () => {
     this.props.dispatch(hideFlashNotification())
@@ -27,6 +32,7 @@ class AppContainer extends Component {
   render () {
     return (
       <View style={{flex: 1}}>
+        <Text> { this.props.isAuthenticating}  </Text>
         {this.props.isAuthenticating === true
             ? <PreSplash />
             : <ReactModoroNavigator isAuthed={this.props.isAuthed} />}

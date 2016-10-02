@@ -1,5 +1,3 @@
-import firebase from 'firebase'
-
 // Mocking the wonderful API that marco is going to put together! 
 
 /*
@@ -15,9 +13,9 @@ firebase.initializeApp({
 var onAuthStateChangedCallbacks = [];
 
 const ref = function(){
-	console.log('firebase REF CALLLED -----')
+	console.log(' REF CALLLED -----')
 }
-const firebaseAuth = {
+const auth = {
 	  // allow to register a callback. The callback is called passing the user informations.
 	  // TODO(nicola): create a class for the object user. 
 	  onAuthStateChanged: function(callback) { 
@@ -53,6 +51,6 @@ const facebookProvider = function(){
 
 export {
   ref,
-  firebaseAuth,
+  auth,
   facebookProvider,
 }

@@ -13,7 +13,6 @@ export default function Splash (props) {
     <View style={styles.container}>
       <View>
         <Image style={styles.image} source={require('../../images/logo.png')} />
-        <Text style={styles.slogan}>ReactModoro</Text>
       </View>
       <View style={styles.loginContainer}>
         <LoginButton

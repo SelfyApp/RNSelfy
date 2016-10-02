@@ -9,18 +9,21 @@ const IS_AUTHED = 'IS_AUTHED'
 export const LOGGING_OUT = 'LOGGING_OUT'
 
 function authenticating () {
+  console.log('currently Autnethicating ');
   return {
     type: AUTHENTICATING,
   }
 }
 
 function notAuthed () {
+  console.log('Not Authed has been called');
   return {
     type: NOT_AUTHED,
   }
 }
 
 function isAuthed (uid) {
+  console.log('is authed has been called, with id ' + uid);
   return {
     type: IS_AUTHED,
     uid,
@@ -33,11 +36,19 @@ function loggingOut () {
   }
 }
 
-export function handleAuthWithFirebase () {
+export function handleAuthRemotely () {
   return function (dispatch, getState) {
-    dispatch(authenticating())
+    dispatch(authenticating()) 
     return getAccessToken()
-      .then(({accessToken}) => authWithToken(accessToken))
+      .then(function (accessToken) {
+        if(accessToken){
+          // I have an access token
+          return authWithToken(accessToken) 
+        } else {
+          // I don't have an access token, I need to relogin via facebook
+          dispatch(notAuthed())
+        }
+      })
       .catch((error) => console.warn('Error in handle auth: ', error))
   }
 }
