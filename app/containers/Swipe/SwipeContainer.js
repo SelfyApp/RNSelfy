@@ -5,10 +5,21 @@ import { connect } from 'react-redux'
 import { handleAuthRemotely } from './../../redux/modules/authentication'
 
 class SwipeContainer extends Component {
-  
+  static propTypes = {
+    openDrawer: PropTypes.func,
+    navigator: PropTypes.object.isRequired,
+  }
+  handleToSettings = () => {
+    this.props.navigator.push({
+      settings: true
+    })
+  }
   render () {
     return (
-      <Cards style={{flex: 1}} />
+      <Cards 
+	      handleToSettings={this.handleToSettings}
+	      openDrawer={this.props.openDrawer} 
+	      style={{flex: 1}} />
     )
   }
 }

@@ -19,12 +19,12 @@ export default function Drawer (props) {
       <DrawerHeader />
       <DrawerTab
         title='Swipe'
-        selected={props.activeFooterTab === 'home'}
+        selected={props.activeFooterTab === 'swipe'}
         onPress={() => {
-          props.onTabSelect('home')
+          props.onTabSelect('swipe')
           props.close()
         }}
-        icon={<IconEntypo name={'documents'} size={35} color={colors.blue} />}
+        icon={<IconEntypo name={'documents'} size={35}  />}
         />
       <DrawerTab
         title='Take Selfy'
@@ -33,7 +33,7 @@ export default function Drawer (props) {
           props.onTabSelect('leaderboard')
           props.close()
         }}
-        icon={<IconIonicons name={'ios-camera'} size={35} color={colors.blue} />}
+        icon={<IconIonicons name={'ios-camera'} size={35}  />}
         />
       <DrawerTab
         title='Me'
@@ -42,7 +42,7 @@ export default function Drawer (props) {
           props.onTabSelect('leaderboard')
           props.close()
         }}
-        icon={<IconIonicons name={'ios-person'} size={35} color={colors.blue} />}
+        icon={<IconIonicons name={'ios-person'} size={35}  />}
           />
       <DrawerTab
         title='Profile'
@@ -51,7 +51,7 @@ export default function Drawer (props) {
           props.onTabSelect('leaderboard')
           props.close()
         }}
-        icon={<IconFontAwsome name={'fire'} size={35} color={colors.blue} />}
+        icon={<IconFontAwsome name={'fire'} size={35}   />}
         />
     </View>
   )

@@ -9,8 +9,13 @@ import {
     View,
     Animated,
     PanResponder,
-    Image
+    Image,
+    StatusBar,
+    Platform
 } from 'react-native';
+
+import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
+
 
 import clamp from 'clamp';
 
@@ -26,7 +31,7 @@ var styles = StyleSheet.create({
       flexDirection: 'column',
     },
     containerStyle: {
-      backgroundColor: 'rgba(255,255,255,.2)',
+      backgroundColor: 'rgba(255,255,255,.5)',
       justifyContent: 'center',
       alignItems: 'center',
       width: undefined,
@@ -203,6 +208,12 @@ class SwipeCards extends Component {
                   resizeMode='cover'
                   style={styles.blurContainer}
                   >
+            <StatusBar hidden={true} />
+            <ReactModoroNavbar
+              title='Swipe'
+              leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
+              rightButton={<Gear onPress={this.props.handleToSettings}/>} />
+
             <View style={styles.containerStyle}>
                 { this.state.card
                     ? (

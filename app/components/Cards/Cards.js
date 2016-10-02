@@ -7,8 +7,11 @@ import
     View,
     Text,
     Image,
+    StatusBar,
+    Platform
 } from 'react-native'
-
+import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
+import { colors } from './../../styles'
 import SwipeCards from './SwipeCards';
 
 let Card = React.createClass({
@@ -138,8 +141,12 @@ var Cards = React.createClass({
         handleNope={this.handleNope}
         cardRemoved={this.cardRemoved}
       />
+       
     )
   }
 })
 
 module.exports = Cards
+
+
+
