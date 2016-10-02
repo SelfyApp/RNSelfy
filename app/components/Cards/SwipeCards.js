@@ -18,10 +18,13 @@ import {
 import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
 
 var navigationBottomBar;
+var backgroundOpacity;
 if (Platform.OS === 'android'){
   navigationBottomBar = 0;
+  backgroundOpacity = .8
 } else {
   navigationBottomBar = 20;
+  backgroundOpacity = .2
 } 
 const {height, width} = Dimensions.get('window');
 import clamp from 'clamp';
@@ -39,11 +42,11 @@ var styles = StyleSheet.create({
 
     },
     containerStyle: {
-      backgroundColor: 'rgba(255,255,255,.5)',
-      justifyContent: 'center',
-      alignItems: 'center',
+      backgroundColor: 'rgba(255,255,255,'+backgroundOpacity+')',
+ 
+      
       width: undefined,
-      flexDirection: 'column',
+    
       flex: 1, 
     },
     container: {
@@ -216,12 +219,13 @@ class SwipeCards extends Component {
                   resizeMode='cover'
                   style={styles.blurContainer}
                   >
-            <ReactModoroNavbar
+             
+           
+              <View style={styles.containerStyle}>
+             <ReactModoroNavbar
               title='Swipe'
               leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
               rightButton={<Gear onPress={this.props.handleToSettings}/>} />
-
-           
                 { this.state.card
                     ? (
                     <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
@@ -263,7 +267,7 @@ class SwipeCards extends Component {
                     )
                 }
 
-       
+          </View>
           </Image>
 
     );
