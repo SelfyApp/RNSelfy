@@ -1,4 +1,4 @@
-package com.reactmodoro;
+package com.selfy;
 
 import com.facebook.react.ReactActivity;
 
@@ -14,6 +14,6 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected String getMainComponentName() {
-        return "ReactModoro";
+        return "Selfy";
     }
 }
