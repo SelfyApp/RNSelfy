@@ -4,7 +4,7 @@ import { colors } from './../../styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import IconFontAwsome from 'react-native-vector-icons/FontAwesome'
 import Entypo from 'react-native-vector-icons/Entypo'
-import { HomeContainer, LeaderboardContainer } from './../../containers'
+import { HomeContainer, LeaderboardContainer, SwipeContainer } from './../../containers'
 
 FooterTabs.propTypes = {
   activeFooterTab: PropTypes.string.isRequired,
@@ -19,9 +19,9 @@ export default function FooterTabs (props) {
         iconSize={35}
         iconName='documents'
         title='Swipe'
-        selected={props.activeFooterTab === 'home'}
-        onPress={() => props.onTabSelect('home')}>
-          <HomeContainer navigator={props.navigator}/>
+        selected={props.activeFooterTab === 'swipe'}
+        onPress={() => props.onTabSelect('swipe')}>
+          <SwipeContainer navigator={props.navigator}/>
       </Entypo.TabBarItem>
       <Icon.TabBarItem
         iconSize={35}

@@ -11,10 +11,11 @@ DrawerTab.propTypes = {
 }
 
 export default function DrawerTab (props) {
-  const color = props.selected === true ? colors.blue : colors.primary
+  const color = props.selected === true ? colors.blue : colors.primary;
+  const icon = React.cloneElement(props.icon, { color: color })
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.container}>
-      {props.icon}
+      {icon} 
       <Text style={[{color}, styles.titleText]}>{props.title}</Text>
     </TouchableOpacity>
   )
