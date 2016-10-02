@@ -62,6 +62,7 @@ var styles = StyleSheet.create({
         right: 20,
     },
     yupText: {
+
         fontSize: 36,
         color: '#000000',
         fontFamily: 'AvenirNext-Bold',
@@ -226,16 +227,7 @@ class SwipeCards extends Component {
               title='Swipe'
               leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
               rightButton={<Gear onPress={this.props.handleToSettings}/>} />
-                { this.state.card
-                    ? (
-                    <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
-                        {this.renderCard(this.state.card)}
-                    </Animated.View>
-                )
-                    : this.renderNoMoreCards() }
-
-
-                { this.props.renderNope
+               { this.props.renderNope
                   ? this.props.renderNope(pan)
                   : (
                       this.props.showNope
@@ -266,6 +258,17 @@ class SwipeCards extends Component {
                       : null
                     )
                 }
+                
+                { this.state.card
+                    ? (
+                    <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
+                        {this.renderCard(this.state.card)}
+                    </Animated.View>
+                )
+                    : this.renderNoMoreCards() }
+
+
+               
 
           </View>
           </Image>

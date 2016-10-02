@@ -65,19 +65,19 @@ var styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginTop: (height-width-180)/2,
-    marginBottom: 0,
+    marginBottom: 10,
     padding: 10,
     width: width-20,
     borderRadius: 5,
     shadowColor: "#000000",
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.8,
     shadowRadius: 10,
     shadowOffset: {
       height: 5,
       width: 2
     },
     alignItems: 'center',
-    overflow: 'hidden',
+ 
     borderColor: 'grey',
     backgroundColor: 'white',
     elevation: 5,
