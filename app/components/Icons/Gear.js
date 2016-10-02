@@ -19,7 +19,7 @@ export default function Gear (props) {
       <Icon
         name='ios-settings-outline'
         size={props.size}
-        color={colors.blue} />
+        color={colors.white} />
     </TouchableOpacity>
   )
 }

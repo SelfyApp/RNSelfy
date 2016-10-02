@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { Navigator, Platform } from 'react-native'
+import { View, Navigator, Platform, StatusBar } from 'react-native'
 import { SplashContainer, FooterTabsContainer, SettingsContainer } from './../../containers'
 
 export default class ReactModoroNavigator extends Component {
@@ -8,9 +8,9 @@ export default class ReactModoroNavigator extends Component {
   }
   renderScene = (route, navigator) => {
     if (this.props.isAuthed === false) {
-      return <SplashContainer navigator={navigator} />
+      return <SplashContainer  style={{flex: 1, backgroundColor: '#00ccff'}} navigator={navigator} />
     } else if (route.settings === true) {
-      return <SettingsContainer navigator={navigator} />
+      return <SettingsContainer  style={{flex: 1, backgroundColor: '#ffcc00'}} navigator={navigator} />
     }
 
     return <FooterTabsContainer navigator={navigator} />
@@ -28,10 +28,12 @@ export default class ReactModoroNavigator extends Component {
   }
   render () {
     return (
-      <Navigator
-        initialRoute={{}}
-        renderScene={this.renderScene}
-        configureScene={this.configureScene} />
+       <View style={{flex: 1}}>
+        <Navigator
+          initialRoute={{ }}
+          renderScene={this.renderScene}
+          configureScene={this.configureScene} />
+      </View>
     )
   }
 }

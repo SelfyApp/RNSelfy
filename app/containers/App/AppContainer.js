@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import { ReactModoroNavigator } from './../../containers'
 import { PreSplash, FlashNotification } from './../../components'
@@ -32,7 +32,9 @@ class AppContainer extends Component {
   render () {
     return (
       <View style={{flex: 1}}>
-        <Text> { this.props.isAuthenticating}  </Text>
+        <StatusBar
+          hidden={true}
+        />
         {this.props.isAuthenticating === true
             ? <PreSplash />
             : <ReactModoroNavigator isAuthed={this.props.isAuthed} />}

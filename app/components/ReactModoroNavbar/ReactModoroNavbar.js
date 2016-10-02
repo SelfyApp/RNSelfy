@@ -20,8 +20,9 @@ export default function ReactModoroNavbar (props) {
   return (
     <NavigationBar
       {...optionalAttrs}
-      style={Platform.OS === 'android' ? {marginTop: 8, marginBottom: 8} : null}
-      tintColor={colors.tabPrimary}
+      statusBar={{hidden:true}}
+      style={Platform.OS === 'android' ? {marginTop: 8, marginBottom: 8} : {marginTop: 0, marginBottom: 0 }}
+      tintColor={'transparent'}
       title={{title: props.title}}/>
   )
 }

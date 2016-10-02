@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { ReactModoroNavbar, Close } from './../../components'
 import { colors, fontSizes } from './../../styles'
 import Slider from 'react-native-slider'
@@ -22,9 +22,9 @@ export default function Settings (props) {
         title='Settings'
         leftButton={<Close onPress={props.onBack}/>} />
       <View style={styles.sliderContainer}>
-        <Text style={styles.titleText}>Timer Duration</Text>
+        <Text style={styles.titleText}>Distance</Text>
         <Text style={styles.valueText}>{props.timerDuration}</Text>
-        <Text style={styles.minutes}>{props.timerDuration === 1 ? 'Minute' : 'Minutes'}</Text>
+        <Text style={styles.minutes}>{props.timerDuration === 1 ? 'Kilometer' : 'Kilometers'}</Text>
         <Slider
           minimumValue={1}
           maximumValue={60}

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { View, StyleSheet, Text, Platform, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, Platform, TouchableOpacity, StatusBar } from 'react-native'
 import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
 import { colors } from './../../styles'
 import Score from './Score'
@@ -25,6 +25,7 @@ Home.propTypes = {
 export default function Home (props) {
   return (
     <View style={[styles.container, {backgroundColor: props.activeCountdown === 'timer' ? colors.blue : colors.red}]}>
+      <StatusBar hidden={true} />
       <ReactModoroNavbar
         title='Home'
         leftButton={Platform.OS === 'android' ? <Hamburger onPress={props.openDrawer} /> : null}

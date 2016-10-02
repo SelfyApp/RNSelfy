@@ -1,10 +1,10 @@
 export const colors = {
-  blue: '#4A90E2',
+  blue: '#00eef3',
   red: '#FF6A60',
   primary: '#4E595D',
   secondary: '#929292',
   border: '#E4E4E4',
-  tabPrimary: '#F7F9F9',
+  tabPrimary: '#cc3300',
   white: '#fff',
 }
 
