@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { colors } from './../../styles'
 
 Exit.propTypes = {
@@ -17,9 +17,9 @@ export default function Exit (props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={props.style}>
       <Icon
-        name='ios-close'
+        name='close'
         size={props.size}
-        color={colors.white} />
+        color={colors.blue} />
     </TouchableOpacity>
   )
 }

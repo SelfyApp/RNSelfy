@@ -16,7 +16,7 @@ import {
     Modal
 } from 'react-native';
 
-import { ReactModoroNavbar, Gear, Hamburger, OverlayProfile } from './../../components'
+import { ReactModoroNavbar, Gear, Hamburger, Exit, OverlayProfile } from './../../components'
 import clamp from 'clamp';
 
 var navigationBottomBar;
@@ -58,8 +58,7 @@ var styles = StyleSheet.create({
         borderRadius: 5,
         right: 20,
     },
-    yupText: {
-
+    yupText: { 
         fontSize: 36,
         color: '#000000',
         fontFamily: 'AvenirNext-Bold',
@@ -75,6 +74,13 @@ var styles = StyleSheet.create({
         fontSize: 36,
         color: '#000000',
         fontFamily: 'AvenirNext-Bold',
+    },
+    exitModal: {
+      right: 10,
+      top: 5,
+      elevation: 2,
+      position: 'absolute',
+      backgroundColor: 'transparent'
     }
 });
 
@@ -199,8 +205,11 @@ class SwipeCards extends Component {
     this.setState({
         modal: true
       })
- 
-    
+  }
+  _closeProfile(){
+    this.setState({
+        modal: false
+      })
   }
 
   render() {
@@ -226,12 +235,14 @@ class SwipeCards extends Component {
           <Image blurRadius={25} source={!this.state.card ? require('../../images/blurBackground.jpg') : {uri: this.state.card.image}} resizeMode='cover' style={styles.blurContainer}> 
             <View style={styles.containerStyle}>
                 <Modal
-                  animationType={"slide"}
+                  animationType={"fade"}
                   transparent={false}
                   visible={this.state.modal}
-                  onRequestClose={() => {alert("Modal has been closed.")}}
+                  onRequestClose={this._closeProfile}
                 >
-                 <OverlayProfile />
+                   
+                  <OverlayProfile />
+                  <Exit style={styles.exitModal} onPress={this._closeProfile.bind(this)} />  
                </Modal>
                <ReactModoroNavbar
                 title='Swipe'

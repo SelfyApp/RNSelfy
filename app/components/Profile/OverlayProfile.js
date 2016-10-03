@@ -7,7 +7,7 @@ class OverlayProfile extends Component {
   render () {
     return (
        <Gallery
-        style={{flex: 1, backgroundColor: 'transparent'}}
+        style={{flex: 1, backgroundColor: 'black'}}
         images={[
           'https://s-media-cache-ak0.pinimg.com/474x/63/93/3c/63933c3e01fdea429ff86646ab8939d6.jpg',
           'https://s-media-cache-ak0.pinimg.com/236x/a0/87/e4/a087e44a09f527b856f6b3afe4c3f301.jpg',
