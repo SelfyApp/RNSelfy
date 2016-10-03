@@ -1,11 +1,13 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text } from 'react-native' 
+import { View, Text, StyleSheet } from 'react-native' 
 import { connect } from 'react-redux' 
 import Gallery from 'react-native-gallery';
+import Button from 'apsl-react-native-button';
 
 class OverlayProfile extends Component {
   render () {
     return (
+       <View style={{flex: 1, backgroundColor: 'black'}}>
        <Gallery
         style={{flex: 1, backgroundColor: 'black'}}
         images={[
@@ -15,8 +17,49 @@ class OverlayProfile extends Component {
           'https://s-media-cache-ak0.pinimg.com/236x/d9/c1/ed/d9c1edd6f142a1b867f0f1b6106afb17.jpg'
         ]}
       />
+      <Button isLoading={true} style={styles.isLoading} onPress={()=>{}}>
+        Following
+      </Button>
+      <Button style={styles.followUser} onPress={()=>{}}>
+        Follow Giasone
+      </Button>
+       <Button style={styles.unfollowUser} onPress={()=>{}}>
+        Unfollow Giasone
+      </Button>
+      </View>
     )
   }
 }
+const styles = StyleSheet.create({
+  isLoading: {
+    position: 'absolute',
+    paddingLeft: 50,
+    paddingRight: 50,
+    margin: 20,
+    bottom: 160,
+    backgroundColor: '#2ffaba',
+    borderColor: '#2ffaba',
+  },
+
+  followUser: {
+    position: 'absolute',
+    paddingLeft: 50,
+    paddingRight: 50,
+    margin: 20,
+    bottom: 20,
+    backgroundColor: '#2ffaba',
+    borderColor: '#2ffaba',
+  },
+  unfollowUser: {
+    position: 'absolute',
+    paddingLeft: 50,
+    paddingRight: 50,
+    margin: 20,
+    bottom: 80,
+     backgroundColor: '#fa2f2f',
+    borderColor: '#fa2f2f',
+ 
+  }
+})
 
 export default connect()(OverlayProfile)

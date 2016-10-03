@@ -19,7 +19,7 @@ export default function Exit (props) {
       <Icon
         name='close'
         size={props.size}
-        color={colors.blue} />
+        color={colors.white} />
     </TouchableOpacity>
   )
 }
