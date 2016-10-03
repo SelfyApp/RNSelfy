@@ -12,10 +12,12 @@ import {
     Image,
     StatusBar,
     Platform,
-    Dimensions
+    Dimensions,
+    Modal
 } from 'react-native';
 
-import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
+import { ReactModoroNavbar, Gear, Hamburger, OverlayProfile } from './../../components'
+import clamp from 'clamp';
 
 var navigationBottomBar;
 var backgroundOpacity;
@@ -27,10 +29,8 @@ if (Platform.OS === 'android'){
   backgroundOpacity = .2
 } 
 const {height, width} = Dimensions.get('window');
-import clamp from 'clamp';
 
 var SWIPE_THRESHOLD = 10;
-
 // Base Styles. Use props to override these values
 var styles = StyleSheet.create({
     blurContainer: {
@@ -43,10 +43,7 @@ var styles = StyleSheet.create({
     },
     containerStyle: {
       backgroundColor: 'rgba(255,255,255,'+backgroundOpacity+')',
- 
-      
       width: undefined,
-    
       flex: 1, 
     },
     container: {
@@ -86,6 +83,7 @@ class SwipeCards extends Component {
     super(props);
 
     this.state = {
+      modal: false,
       pan: new Animated.ValueXY(),
       enter: new Animated.Value(0.5),
       card: this.props.cards ? this.props.cards[0] : null,
@@ -173,8 +171,8 @@ class SwipeCards extends Component {
           }).start()
         }
       }
-    })
-  }
+    }) 
+  } 
 
   _resetState() {
     this.state.pan.setValue({x: 0, y: 0});
@@ -192,12 +190,21 @@ class SwipeCards extends Component {
     )
   }
 
-  renderCard(cardData) {
-    return this.props.renderCard(cardData)
+  renderCard(cardData, handler) {
+    return this.props.renderCard(cardData, handler)
+  }
+
+  _seeProfile(){
+ 
+    this.setState({
+        modal: true
+      })
+ 
+    
   }
 
   render() {
-    let { pan, enter } = this.state;
+    let { pan, enter, modal } = this.state;
 
     let [translateX, translateY] = [pan.x, pan.y];
 
@@ -218,61 +225,66 @@ class SwipeCards extends Component {
         return (
           <Image blurRadius={25} source={!this.state.card ? require('../../images/blurBackground.jpg') : {uri: this.state.card.image}} resizeMode='cover' style={styles.blurContainer}> 
             <View style={styles.containerStyle}>
-             <ReactModoroNavbar
-              title='Swipe'
-              leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
-              rightButton={<Gear onPress={this.props.handleToSettings}/>} />
-               { this.props.renderNope
-                  ? this.props.renderNope(pan)
-                  : (
-                      this.state.card && this.props.showNope
-                      ? (
-                        <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
-                            {this.props.noView
-                                ? this.props.noView
-                                : <Text style={this.props.nopeTextStyle}>{this.props.noText ? this.props.noText : "Nope!"}</Text>
-                            }
-                        </Animated.View>
-                        )
-                      : null
-                    )
-                }
-
-                { this.props.renderYup
-                  ? this.props.renderYup(pan)
-                  : (
-                      this.state.card &&  this.props.showYup 
-                      ? (
-                        <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
-                            {this.props.yupView
-                                ? this.props.yupView
-                                : <Text style={this.props.yupTextStyle}>{this.props.yupText? this.props.yupText : "Yup!"}</Text>
-                            }
-                        </Animated.View>
+                <Modal
+                  animationType={"slide"}
+                  transparent={false}
+                  visible={this.state.modal}
+                  onRequestClose={() => {alert("Modal has been closed.")}}
+                >
+                 <OverlayProfile />
+               </Modal>
+               <ReactModoroNavbar
+                title='Swipe'
+                leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
+                rightButton={<Gear onPress={this.props.handleToSettings}/>} />
+                 { this.props.renderNope
+                    ? this.props.renderNope(pan)
+                    : (
+                        this.state.card && this.props.showNope
+                        ? (
+                          <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
+                              {this.props.noView
+                                  ? this.props.noView
+                                  : <Text style={this.props.nopeTextStyle}>{this.props.noText ? this.props.noText : "Nope!"}</Text>
+                              }
+                          </Animated.View>
+                          )
+                        : null
                       )
-                      : null
-                    )
-                }
+                  }
 
-                { this.state.card
-                    ? (
-                    <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
-                        {this.renderCard(this.state.card)}
-                    </Animated.View>
-                )
-                    : this.renderNoMoreCards() }
+                  { this.props.renderYup
+                    ? this.props.renderYup(pan)
+                    : (
+                        this.state.card &&  this.props.showYup 
+                        ? (
+                          <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
+                              {this.props.yupView
+                                  ? this.props.yupView
+                                  : <Text style={this.props.yupTextStyle}>{this.props.yupText? this.props.yupText : "Yup!"}</Text>
+                              }
+                          </Animated.View>
+                        )
+                        : null
+                      )
+                  }
 
+                  { this.state.card
+                      ? (
+                      <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
+                          {this.renderCard(this.state.card, this._seeProfile.bind(this))}
+                      </Animated.View>
+                  )
+                      : this.renderNoMoreCards() }
 
-               
-
-          </View>
+            </View>
            </Image> 
 
     );
   }
 }
 
-SwipeCards.propTypes = {
+SwipeCards.propTypes = { 
     cards: React.PropTypes.array,
     renderCards: React.PropTypes.func,
     loop: React.PropTypes.bool,
@@ -293,7 +305,7 @@ SwipeCards.propTypes = {
     nopeTextStyle: Text.propTypes.style
 };
 
-SwipeCards.defaultProps = {
+SwipeCards.defaultProps = { 
     loop: false,
     showYup: true,
     showNope: true,

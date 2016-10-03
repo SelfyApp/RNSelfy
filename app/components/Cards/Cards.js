@@ -9,7 +9,8 @@ import
     Image,
     StatusBar,
     Platform,
-    Dimensions
+    Dimensions,
+    TouchableHighlight
 } from 'react-native'
 import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
 import { colors } from './../../styles'
@@ -18,10 +19,14 @@ import SwipeCards from './SwipeCards';
 const {height, width} = Dimensions.get('window');
 
 let Card = React.createClass({
+
   render() {
+     
     return (
-      <View style={styles.card}  elevation={5}>
-        <Image style={styles.thumbnail} source={{uri: this.props.image}} />
+      <View style={styles.card} elevation={5}>
+        <TouchableHighlight onPress={this.props.handleTouch}>
+          <Image style={styles.thumbnail} source={{uri: this.props.image}} />
+        </TouchableHighlight>
         <Text style={styles.text}>This is card {this.props.name}</Text>
       </View>
     )
@@ -102,8 +107,8 @@ var styles = StyleSheet.create({
   },
   noMoreCards: {
     flex: 1,
-            justifyContent: 'center',
-        alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 100,
   },
   
@@ -149,7 +154,7 @@ var Cards = React.createClass({
       <SwipeCards
         cards={this.state.cards}
         loop={false} 
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData, handleTouch) => <Card handleTouch={handleTouch} {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
         showYup={true}
         showNope={true}
