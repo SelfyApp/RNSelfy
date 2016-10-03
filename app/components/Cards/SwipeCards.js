@@ -16,7 +16,7 @@ import {
     Modal
 } from 'react-native';
 
-import { ReactModoroNavbar, Gear, Hamburger, Exit, OverlayProfile } from './../../components'
+import { ReactModoroNavbar, Gear, Hamburger, Exit, OverlayProfile, Yay, Nan } from './../../components'
 import clamp from 'clamp';
 
 var navigationBottomBar;
@@ -29,7 +29,7 @@ if (Platform.OS === 'android'){
 } else {
   navigationBottomBar = 20;
   backgroundOpacity = 0
-  nopeYupContainerBar = 0
+  nopeYupContainerBar = -10
 } 
 const {height, width} = Dimensions.get('window');
 
@@ -62,10 +62,10 @@ var styles = StyleSheet.create({
     },
     yup: {
       position: 'absolute',
-      padding: 20,
-      bottom: (height - width - 190 + navigationBottomBar - 2*nopeYupContainerBar)/2,
-      borderRadius: 5,
-      right: 20,
+ 
+      bottom: (height - width - 160 + navigationBottomBar - 2*nopeYupContainerBar)/2,
+ 
+      right: width/5,
     },
     yupText: { 
       fontSize: 36,
@@ -74,10 +74,10 @@ var styles = StyleSheet.create({
     },
     nope: {
       position: 'absolute',
-      bottom: (height - width - 190 + navigationBottomBar - 2*nopeYupContainerBar)/2,
-      padding: 20,
-      borderRadius: 5,
-      left: 20,
+ 
+      bottom: (height - width - 195 - 2*nopeYupContainerBar)/2,
+ 
+      left: width/5,
     },
     nopeText: {
       fontSize: 36,
@@ -223,7 +223,7 @@ class SwipeCards extends Component {
     let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]});
     let scale = enter;
 
-    let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
+    let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}]};
 
     let yupOpacity = pan.x.interpolate({inputRange: [0, 150], outputRange: [0, 1]});
     let yupScale = pan.x.interpolate({inputRange: [0, 150], outputRange: [1, 1.1], extrapolate: 'clamp'});
@@ -262,7 +262,7 @@ class SwipeCards extends Component {
                             <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
                                 {this.props.noView
                                     ? this.props.noView
-                                    : <Text style={this.props.nopeTextStyle}>{this.props.noText ? this.props.noText : "Nope!"}</Text>
+                                    : <Nan style={styles.exitModal} onPress={()=>{}} />   
                                 }
                             </Animated.View>
                             )
@@ -278,7 +278,7 @@ class SwipeCards extends Component {
                             <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
                                 {this.props.yupView
                                     ? this.props.yupView
-                                    : <Text style={this.props.yupTextStyle}>{this.props.yupText? this.props.yupText : "Yup!"}</Text>
+                                    : <Yay style={styles.exitModal} onPress={()=>{}} />   
                                 }
                             </Animated.View>
                           )

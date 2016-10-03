@@ -19,7 +19,7 @@ export default function Hamburger (props) {
       <Icon
         name='ios-menu'
         size={props.size}
-        color={colors.white} />
+        color={'#c1e1f3'} />
     </TouchableOpacity>
   )
 }

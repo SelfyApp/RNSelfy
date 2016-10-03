@@ -1,25 +1,25 @@
 import React, { PropTypes } from 'react'
 import { TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { colors } from './../../styles'
 
-Gear.propTypes = {
+Yay.propTypes = {
   size: PropTypes.number.isRequired,
   style: PropTypes.object,
   onPress: PropTypes.func.isRequired,
 }
 
-Gear.defaultProps = {
-  size: 30,
+Yay.defaultProps = {
+  size: 40,
 }
 
-export default function Gear (props) {
+export default function Yay (props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={props.style}>
       <Icon
-        name='ios-settings'
+        name='heart-o'
         size={props.size}
-        color={'#c1e1f3'} />
+        color={'#6b6490'} />
     </TouchableOpacity>
   )
 }

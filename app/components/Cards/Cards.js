@@ -49,7 +49,7 @@ let NoMoreCards = React.createClass({
 const CardsArray = [
   {name: '1', image: 'https://s-media-cache-ak0.pinimg.com/474x/63/93/3c/63933c3e01fdea429ff86646ab8939d6.jpg'},
   {name: '2', image: 'https://s-media-cache-ak0.pinimg.com/474x/25/6a/8f/256a8f69b3ec7d149295e50053e2c398.jpg'},
-  /*{name: '3', image: 'https://s-media-cache-ak0.pinimg.com/474x/32/8b/3f/328b3febdb59628b99f321b664e94de8.jpg'},
+  {name: '3', image: 'https://s-media-cache-ak0.pinimg.com/474x/32/8b/3f/328b3febdb59628b99f321b664e94de8.jpg'},
   {name: '4', image: 'https://s-media-cache-ak0.pinimg.com/474x/37/2c/a9/372ca9a9705c28450440c811b32d3a2c.jpg'},
   {name: '5', image: 'https://s-media-cache-ak0.pinimg.com/474x/c6/dd/81/c6dd818fccc9bab499d38c7df8fc283b.jpg'},
   {name: '6', image: 'https://s-media-cache-ak0.pinimg.com/474x/47/06/8a/47068a866bb549d9933754ee3f117335.jpg'},
@@ -58,7 +58,7 @@ const CardsArray = [
   {name: '9', image: 'https://s-media-cache-ak0.pinimg.com/474x/f8/86/24/f88624f8c4f80706f4f0e479d543a49a.jpg'},
   {name: '10', image: 'https://s-media-cache-ak0.pinimg.com/474x/0c/0c/1c/0c0c1c74691f4d25b2573111de50406d.jpg'},
   {name: '11', image: 'https://s-media-cache-ak0.pinimg.com/474x/b2/25/35/b22535bbb0190e62028bbfe2d444e46f.jpg'},
-  {name: '12', image: 'https://s-media-cache-ak0.pinimg.com/474x/8c/e7/bd/8ce7bd6010fa054a1d99f105570fb513.jpg'},*/
+  {name: '12', image: 'https://s-media-cache-ak0.pinimg.com/474x/8c/e7/bd/8ce7bd6010fa054a1d99f105570fb513.jpg'},  
 ]
 
 const Cards2 = [
@@ -100,13 +100,11 @@ var styles = StyleSheet.create({
     padding: 10,
     width: width-60,
     height: 40,
-    position: 'absolute',
     bottom:  30,
   },
   text: {
     color: '#947089',
-    fontSize: 15,
-    
+    fontSize: 15, 
   },
   containerStyle:{
     backgroundColor: 'transparent',

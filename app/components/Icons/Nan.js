@@ -3,23 +3,23 @@ import { TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { colors } from './../../styles'
 
-Gear.propTypes = {
+Nan.propTypes = {
   size: PropTypes.number.isRequired,
   style: PropTypes.object,
   onPress: PropTypes.func.isRequired,
 }
 
-Gear.defaultProps = {
-  size: 30,
+Nan.defaultProps = {
+  size: 80,
 }
 
-export default function Gear (props) {
+export default function Nan (props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={props.style}>
       <Icon
-        name='ios-settings'
+        name='ios-close'
         size={props.size}
-        color={'#c1e1f3'} />
+        color={'#6b6490'} />
     </TouchableOpacity>
   )
 }
