@@ -6,7 +6,7 @@ export function fetchScore (uid) {
     // return the user score
     function(resolve, reject) {
       resolve({
-        score: 10,
+        score: 100,
         displayName: 'Giasone ' + Math.floor(1000*Math.random()),
         photoURL: 'https://s-media-cache-ak0.pinimg.com/236x/8f/9d/c5/8f9dc59a47a389576776eaef35d16d86.jpg',
       });

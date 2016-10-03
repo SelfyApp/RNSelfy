@@ -37,15 +37,15 @@ export default function Drawer (props) {
         />
       <DrawerTab
         title='Me'
-        selected={props.activeFooterTab === 'leaderboard'}
+        selected={props.activeFooterTab === 'home'}
         onPress={() => {
-          props.onTabSelect('leaderboard')
+          props.onTabSelect('home')
           props.close()
         }}
         icon={<IconIonicons name={'ios-person'} size={35}  />}
           />
       <DrawerTab
-        title='Profile'
+        title='Friends'
         selected={props.activeFooterTab === 'leaderboard'}
         onPress={() => {
           props.onTabSelect('leaderboard')

@@ -99,15 +99,15 @@ export function fetchAndSetScoresListener () {
       let leaderboardUids =[];
       let justScores= [];
       let users = [];
-      for(var i= 0; i< 20; i++) {
+      for(var i= 0; i< 40; i++) {
           var uid =  Math.floor(1000*Math.random())
           var user = {
             score: i,
-            displayName: 'Giasone ' + uid,
+            displayName: 'Giasone ' + i,
             photoURL: 'https://s-media-cache-ak0.pinimg.com/236x/8f/9d/c5/8f9dc59a47a389576776eaef35d16d86.jpg',
           }
           users[uid] = user;
-          justScores[uid] = 10;
+          justScores[uid] = i;
           leaderboardUids[uid] = uid;
       }
       dispatch(updateLeaderboard(leaderboardUids))

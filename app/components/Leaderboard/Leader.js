@@ -23,8 +23,9 @@ export default function Leader (props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 15,
     borderBottomWidth: 1,
+    backgroundColor: '#ffe2b5',
     borderColor: colors.border,
     flexDirection: 'row',
     alignItems: 'center',
@@ -34,13 +35,14 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
+    marginRight: 10
   },
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   nameText: {
-    padding: 10,
+    padding: 5,
     fontSize: fontSizes.secondary,
     color: colors.primary,
   },

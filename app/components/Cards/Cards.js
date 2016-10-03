@@ -23,7 +23,7 @@ let Card = React.createClass({
   render() {
      
     return (
-      <View style={styles.card} elevation={5}>
+      <View style={styles.card} elevation={6}>
         <TouchableHighlight onPress={this.props.handleTouch}>
           <Image style={styles.thumbnail} source={{uri: this.props.image}} />
         </TouchableHighlight>
@@ -76,7 +76,7 @@ var styles = StyleSheet.create({
     width: width-20,
     borderRadius: 5,
     shadowColor: "#000000",
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.4,
     shadowRadius: 10,
     shadowOffset: {
       height: 5,
