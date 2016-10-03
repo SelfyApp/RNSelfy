@@ -23,6 +23,7 @@ export default class ReactModoroNavigator extends Component {
     if (route.settings === true) {
       return Navigator.SceneConfigs.FloatFromBottom
     }
+    
 
     return Navigator.SceneConfigs.FloatFromRight
   }
