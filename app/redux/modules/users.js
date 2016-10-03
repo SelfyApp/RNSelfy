@@ -1,7 +1,9 @@
 const ADD_USER = 'ADD_USER'
 const ADD_MULTIPLE_USERS = 'ADD_MULTIPLE_USERS'
 
-export function addUser (uid, user) {
+export function addUser(uid, user) {
+  console.log('ADD USER ')
+  console.log(uid, user)
   return {
     type: ADD_USER,
     uid,
@@ -17,6 +19,7 @@ export function addMultipleUsers (users) {
 }
 
 export default function users (state = {}, action) {
+  console.log('Register user', action.user, action.type)
   switch (action.type) {
     case ADD_USER :
       return {

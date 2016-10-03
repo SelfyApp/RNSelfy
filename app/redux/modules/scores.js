@@ -65,7 +65,7 @@ function fetchingScoreSuccess (uid, score) {
 export function fetchAndSetScoresListener () {
   return function (dispatch) {
     let listenerSet = false
-    ref.child('scores')
+    /* ref.child('scores')
       .orderByChild('score')
       .limitToLast(15)
       .on('value', (snapshot) => {
@@ -95,14 +95,38 @@ export function fetchAndSetScoresListener () {
           listenerSet = true
         }
       })
+      */
+      let leaderboardUids =[];
+      let justScores= [];
+      let users = [];
+      for(var i= 0; i< 20; i++) {
+          var uid =  Math.floor(1000*Math.random())
+          var user = {
+            score: i,
+            displayName: 'Giasone ' + uid,
+            photoURL: 'https://s-media-cache-ak0.pinimg.com/236x/8f/9d/c5/8f9dc59a47a389576776eaef35d16d86.jpg',
+          }
+          users[uid] = user;
+          justScores[uid] = 10;
+          leaderboardUids[uid] = uid;
+      }
+      dispatch(updateLeaderboard(leaderboardUids))
+      dispatch(addScores(justScores))
+      dispatch(addMultipleUsers(users))
+      if (listenerSet === false) {
+        dispatch(addListener())
+        listenerSet = true
+      }
   }
 }
 
 export function fetchAndHandleScore (uid) {
+  console.log('Calling Fetch AND HANDLE SCORE ', uid)
   return function (dispatch, getState) {
     dispatch(fetchingScore())
     return fetchScore(uid)
       .then((scoreInfo) => {
+        console.log('SCORE ', scoreInfo)
         dispatch(
           fetchingScoreSuccess(
             uid,
@@ -182,6 +206,7 @@ const initialState = {
 }
 
 export default function scores (state = initialState, action) {
+  console.log(action.type)
   switch (action.type) {
     case FETCHING_SCORE :
       return {

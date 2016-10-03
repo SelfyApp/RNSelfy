@@ -58,19 +58,22 @@ export function onAuthChange (user) {
     if (!user) {
       dispatch(notAuthed())
     } else {
+       
       const { uid, displayName, photoURL } = user
+      const { userID } = uid
+      console.log('user', userID)
       updateUser({
-        uid,
+        userID,
         displayName,
         photoURL,
       })
-      .then(() => fetchSettings(uid))
+      .then(() => fetchSettings(userID))
       .then((settings) => Promise.all([
         dispatch(addSettingsTimerDuration(settings.timerDuration)),
         dispatch(addSettingsRestDuration(settings.restDuration)),
-        dispatch(fetchAndHandleScore(uid)),
+        dispatch(fetchAndHandleScore(userID)),
       ]))
-      .then(() => dispatch(isAuthed(uid)))
+      .then(() => dispatch(isAuthed(userID)))
     }
   }
 }

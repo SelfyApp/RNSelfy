@@ -46,11 +46,15 @@ class LeaderboardContainer extends Component {
 }
 
 function mapStateToProps ({scores, users}) {
+  console.log('trying to map users to scores ----');
+  console.log(scores);
+  console.log(users);
+  console.log('-----')
   return {
     listenerSet: scores.listenerSet,
     leaders: scores.leaderboardUids.map((uid) => {
       return {
-        score: scores.usersScores[uid],
+        score: 10,
         ...users[uid],
       }
     })
