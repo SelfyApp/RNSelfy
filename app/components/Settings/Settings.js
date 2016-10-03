@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { View, StyleSheet, Text, TouchableOpacity, StatusBar } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, StatusBar, Switch } from 'react-native'
 import { ReactModoroNavbar, Close } from './../../components'
 import { colors, fontSizes } from './../../styles'
 import Slider from 'react-native-slider'
@@ -35,6 +35,20 @@ export default function Settings (props) {
           value={props.timerDuration}
           onValueChange={props.onTimerChange} />
       </View>
+      <View style={styles.sliderContainer}>
+        <Text> Men Pictures: </Text>
+        <Switch
+            onTintColor={colors.blue}
+            onValueChange={(value) => {/*this.setState({falseSwitchIsOn: value}*/ } }
+            style={{marginBottom: 10}}
+            value={false} />
+        <Text> Women Pictures: </Text>
+        <Switch
+            onTintColor={colors.blue}
+            onValueChange={(value) => {/*this.setState({falseSwitchIsOn: value}*/ } }
+            style={{marginBottom: 10}}
+            value={true} />
+      </View>    
       <View style={styles.sliderContainer}>
         <Text style={styles.titleText}>Rest Duration</Text>
         <Text style={styles.valueText}>{props.restDuration}</Text>
