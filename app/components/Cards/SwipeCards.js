@@ -253,48 +253,44 @@ class SwipeCards extends Component {
                    { this.state.card
                       ? (
                   <View style={{flex: 1}}>
-                  <Image source={ require('../../images/likeDislikeBackground.jpg')} resizeMode='stretch' style={styles.nopeYupContainer}> 
-                    { this.props.renderNope
-                      ? this.props.renderNope(pan)
-                      : (
-                          this.state.card && this.props.showNope
-                          ? (
-                            <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
-                                {this.props.noView
-                                    ? this.props.noView
-                                    : <Nan style={styles.exitModal} onPress={()=>{}} />   
-                                }
-                            </Animated.View>
-                            )
-                          : null
-                        )
-                    }
-
-                    { this.props.renderYup
-                      ? this.props.renderYup(pan)
-                      : (
-                          this.state.card &&  this.props.showYup 
-                          ? (
-                            <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
-                                {this.props.yupView
-                                    ? this.props.yupView
-                                    : <Yay style={styles.exitModal} onPress={()=>{}} />   
-                                }
-                            </Animated.View>
+                    <Image source={ require('../../images/likeDislikeBackground.jpg')} resizeMode='stretch' style={styles.nopeYupContainer}> 
+                      { this.props.renderNope
+                        ? this.props.renderNope(pan)
+                        : (
+                            this.state.card && this.props.showNope
+                            ? (
+                              <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
+                                  {this.props.noView
+                                      ? this.props.noView
+                                      : <Nan style={styles.exitModal} onPress={this._goToNextCard.bind(this)} />   
+                                  }
+                              </Animated.View>
+                              )
+                            : null
                           )
-                          : null
-                        )
-                    }
+                      } 
+                      { this.props.renderYup
+                        ? this.props.renderYup(pan)
+                        : (
+                            this.state.card &&  this.props.showYup 
+                            ? (
+                              <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
+                                  {this.props.yupView
+                                      ? this.props.yupView
+                                      : <Yay style={styles.exitModal} onPress={this._goToNextCard.bind(this)} />   
+                                  }
+                              </Animated.View>
+                            )
+                            : null
+                          )
+                      }
                     </Image>                    
-               
-                      <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
-                          {this.renderCard(this.state.card, this._seeProfile.bind(this))}
-                      </Animated.View>
-                    </View>
+                    <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
+                      {this.renderCard(this.state.card, this._seeProfile.bind(this))}
+                    </Animated.View>
+                  </View>
                   )
-                      : this.renderNoMoreCards() }
-
-
+                  : this.renderNoMoreCards() } 
             </View>
            </Image> 
 

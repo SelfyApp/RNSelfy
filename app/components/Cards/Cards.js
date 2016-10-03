@@ -139,7 +139,7 @@ var Cards = React.createClass({
   },
   cardRemoved (index) {
     
-
+    console.log('CALLED CARD REMOVED CALLBACK')
     let CARD_REFRESH_LIMIT = 3
 
     if (this.state.cards.length - index <= CARD_REFRESH_LIMIT + 1) {
