@@ -1,6 +1,7 @@
 package com.selfy;
 
 import com.facebook.react.ReactActivity;
+import com.imagepicker.ImagePickerPackage;
 
 import android.content.Intent;
 

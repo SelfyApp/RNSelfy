@@ -21,7 +21,7 @@ var navigationBottomBar;
 var backgroundOpacity;
 if (Platform.OS === 'android'){
   navigationBottomBar = 0;
-  backgroundOpacity = .8
+  backgroundOpacity = .7
 } else {
   navigationBottomBar = 20;
   backgroundOpacity = .2
@@ -29,7 +29,7 @@ if (Platform.OS === 'android'){
 const {height, width} = Dimensions.get('window');
 import clamp from 'clamp';
 
-var SWIPE_THRESHOLD = 50;
+var SWIPE_THRESHOLD = 10;
 
 // Base Styles. Use props to override these values
 var styles = StyleSheet.create({
@@ -216,13 +216,8 @@ class SwipeCards extends Component {
     let animatedNopeStyles = {transform: [{scale: nopeScale}]}
 
         return (
-          <Image blurRadius={25} source={{uri: this.state.card.image}} 
-                  resizeMode='cover'
-                  style={styles.blurContainer}
-                  >
-             
-           
-              <View style={styles.containerStyle}>
+          <Image blurRadius={25} source={!this.state.card ? require('../../images/blurBackground.jpg') : {uri: this.state.card.image}} resizeMode='cover' style={styles.blurContainer}> 
+            <View style={styles.containerStyle}>
              <ReactModoroNavbar
               title='Swipe'
               leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
@@ -230,7 +225,7 @@ class SwipeCards extends Component {
                { this.props.renderNope
                   ? this.props.renderNope(pan)
                   : (
-                      this.props.showNope
+                      this.state.card && this.props.showNope
                       ? (
                         <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
                             {this.props.noView
@@ -246,7 +241,7 @@ class SwipeCards extends Component {
                 { this.props.renderYup
                   ? this.props.renderYup(pan)
                   : (
-                      this.props.showYup
+                      this.state.card &&  this.props.showYup 
                       ? (
                         <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
                             {this.props.yupView
@@ -258,7 +253,7 @@ class SwipeCards extends Component {
                       : null
                     )
                 }
-                
+
                 { this.state.card
                     ? (
                     <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
@@ -271,7 +266,7 @@ class SwipeCards extends Component {
                
 
           </View>
-          </Image>
+           </Image> 
 
     );
   }

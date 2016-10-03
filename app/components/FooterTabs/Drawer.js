@@ -28,9 +28,9 @@ export default function Drawer (props) {
         />
       <DrawerTab
         title='Take Selfy'
-        selected={props.activeFooterTab === 'leaderboard'}
+        selected={props.activeFooterTab === 'takeSelfy'}
         onPress={() => {
-          props.onTabSelect('leaderboard')
+          props.onTabSelect('takeSelfy')
           props.close()
         }}
         icon={<IconIonicons name={'ios-camera'} size={35}  />}

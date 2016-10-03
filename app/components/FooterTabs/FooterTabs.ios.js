@@ -4,7 +4,7 @@ import { colors } from './../../styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import IconFontAwsome from 'react-native-vector-icons/FontAwesome'
 import Entypo from 'react-native-vector-icons/Entypo'
-import { HomeContainer, LeaderboardContainer, SwipeContainer } from './../../containers'
+import { HomeContainer, LeaderboardContainer, SwipeContainer, TakeSelfyContainer } from './../../containers'
 
 FooterTabs.propTypes = {
   activeFooterTab: PropTypes.string.isRequired,
@@ -27,9 +27,9 @@ export default function FooterTabs (props) {
         iconSize={35}
         iconName='ios-camera'
         title='Take Selfy'
-        selected={props.activeFooterTab === 'home'}
-        onPress={() => props.onTabSelect('home')}>
-          <HomeContainer navigator={props.navigator}/>
+        selected={props.activeFooterTab === 'takeSelfy'}
+        onPress={() => props.onTabSelect('takeSelfy')}>
+          <TakeSelfyContainer navigator={props.navigator}/>
       </Icon.TabBarItem>
       <Icon.TabBarItem
         iconSize={35}
