@@ -15,7 +15,13 @@ Exit.defaultProps = {
 
 export default function Exit (props) {
   return (
-    <TouchableOpacity onPress={props.onPress} style={props.style}>
+    <TouchableOpacity onPress={props.onPress} style={{
+      right: 10,
+      top: 5,
+      elevation: 2,
+      position: 'absolute',
+      backgroundColor: 'transparent'
+    }}>
       <Icon
         name='close'
         size={props.size}

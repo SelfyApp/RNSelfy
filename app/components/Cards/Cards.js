@@ -124,13 +124,13 @@ var Cards = React.createClass({
     }
   },
   handleYup (card) {
-    console.log("yup")
+    
   },
   handleNope (card) {
-    console.log("nope")
+    
   },
   cardRemoved (index) {
-    console.log(`The index is ${index}`);
+    
 
     let CARD_REFRESH_LIMIT = 3
 

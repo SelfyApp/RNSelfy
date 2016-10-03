@@ -25,7 +25,7 @@ export function setRest (duration, uid) {
 }
 
 export function fetchSettings (uid) {
-  console.log('TRYING TO GET SETTING HERE' , uid)
+   
   return new Promise(
         // we return here all the settings related to the user uid.
         function(resolve, reject) {

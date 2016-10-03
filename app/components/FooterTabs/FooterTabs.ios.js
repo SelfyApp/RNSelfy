@@ -45,7 +45,7 @@ export default function FooterTabs (props) {
         title='Friends'
         selected={props.activeFooterTab === 'leaderboard'}
         onPress={() => props.onTabSelect('leaderboard')}>
-          <LeaderboardContainer navigator={props.navigator}/>
+      <LeaderboardContainer navigator={props.navigator}/>
       </IconFontAwsome.TabBarItem>
     </TabBarIOS>
   )

@@ -16,7 +16,8 @@ class TakeSelfyContainer extends Component {
   }
   render () {
     return (
-       <TakeSelfy handleToSettings={this.handleToSettings}
+       <TakeSelfy 
+        handleToSettings={this.handleToSettings}
         openDrawer={this.props.openDrawer} 
         style={{flex: 1}} />
     )

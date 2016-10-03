@@ -74,13 +74,6 @@ var styles = StyleSheet.create({
         fontSize: 36,
         color: '#000000',
         fontFamily: 'AvenirNext-Bold',
-    },
-    exitModal: {
-      right: 10,
-      top: 5,
-      elevation: 2,
-      position: 'absolute',
-      backgroundColor: 'transparent'
     }
 });
 

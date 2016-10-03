@@ -5,7 +5,6 @@ export function getAccessToken () {
  
   AccessToken.getCurrentAccessToken().then(function(token){
 
-    console.log('the token available ' + token)
   })
   return AccessToken.getCurrentAccessToken()
 }

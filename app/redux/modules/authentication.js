@@ -9,21 +9,21 @@ const IS_AUTHED = 'IS_AUTHED'
 export const LOGGING_OUT = 'LOGGING_OUT'
 
 function authenticating () {
-  console.log('currently Autnethicating ');
+   
   return {
     type: AUTHENTICATING,
   }
 }
 
 function notAuthed () {
-  console.log('Not Authed has been called');
+  
   return {
     type: NOT_AUTHED,
   }
 }
 
 function isAuthed (uid) {
-  console.log('is authed has been called, with id ' + uid);
+  
   return {
     type: IS_AUTHED,
     uid,
@@ -53,10 +53,8 @@ export function handleAuthRemotely () {
   }
 }
 
-export function onAuthChange (user) {
-  console.log('CALLED ON AUTH CHANGE')
-  return function (dispatch) {
-    console.log(user);
+export function onAuthChange (user) { 
+  return function (dispatch) { 
     if (!user) {
       dispatch(notAuthed())
     } else {
@@ -90,8 +88,7 @@ const initialState = {
   authedId: '',
 }
 
-export default function authentication (state = initialState, action) {
-  console.log('Authentication Action Type: ' + action.type)
+export default function authentication (state = initialState, action) { 
   switch (action.type) {
     case AUTHENTICATING :
       return {

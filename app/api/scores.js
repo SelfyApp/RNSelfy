@@ -1,7 +1,7 @@
 import { ref } from './../config/constants'
 
 export function fetchScore (uid) {
-	console.log(' fetching score of the user ')
+	console.log(' fetching score of the user ' + uid)
    return new Promise(
     // return the user score
     function(resolve, reject) {
