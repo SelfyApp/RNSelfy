@@ -27,7 +27,9 @@ let Card = React.createClass({
         <TouchableHighlight onPress={this.props.handleTouch}>
           <Image style={styles.thumbnail} source={{uri: this.props.image}} />
         </TouchableHighlight>
-        <Text style={styles.text}>This is card {this.props.name}</Text>
+        <View style={styles.textHolder}>
+          <Text style={styles.text}>This is card {this.props.name}</Text>
+        </View>
       </View>
     )
   }
@@ -68,13 +70,13 @@ const Cards2 = [
 
 var styles = StyleSheet.create({
   card: {
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 30,
+    marginRight: 30,
     marginTop: (height-width-180)/2,
     marginBottom: 10,
-    padding: 10,
-    width: width-20,
-    borderRadius: 5,
+    width: width-60,
+    height: width + 10,
+    borderRadius: 10,
     shadowColor: "#000000",
     shadowOpacity: 0.4,
     shadowRadius: 10,
@@ -83,20 +85,28 @@ var styles = StyleSheet.create({
       width: 2
     },
     alignItems: 'center',
- 
-    borderColor: 'grey',
-    backgroundColor: 'white',
+    backgroundColor: '#eaf6ee',
     elevation: 5,
   },
   thumbnail: {
+    borderRadius: 10,
     flex: 1,
-    width: width-40,
-    height: width-40,
+    width: width-60,
+    height: width-50,
+  },
+  textHolder: {
+    backgroundColor: '#eaf6ee',
+    flex: 1,
+    padding: 10,
+    width: width-60,
+    height: 40,
+    position: 'absolute',
+    bottom:  30,
   },
   text: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10
+    color: '#947089',
+    fontSize: 15,
+    
   },
   containerStyle:{
     backgroundColor: 'transparent',

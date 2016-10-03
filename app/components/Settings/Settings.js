@@ -50,11 +50,11 @@ export default function Settings (props) {
             value={true} />
       </View>    
       <View style={styles.sliderContainer}>
-        <Text style={styles.titleText}>Rest Duration</Text>
+        <Text style={styles.titleText}>Age Range</Text>
         <Text style={styles.valueText}>{props.restDuration}</Text>
-        <Text style={styles.minutes}>{props.restDuration === 1 ? 'Minute' : 'Minutes'}</Text>
+        <Text style={styles.minutes}>{props.restDuration === 1 ? 'Year' : 'Years'}</Text>
         <Slider
-          minimumValue={1}
+          minimumValue={18}
           maximumValue={60}
           onSlidingComplete={props.onRestComplete}
           thumbTintColor={colors.border}

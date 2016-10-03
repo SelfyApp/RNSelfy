@@ -6,7 +6,7 @@ export function setTimer (duration, uid) {
         function(resolve, reject) {
           var settings = {
             timerDuration: 0.1,
-            restDuration: 5
+            restDuration: 22
           }
           resolve(settings);
         });
@@ -18,7 +18,7 @@ export function setRest (duration, uid) {
         function(resolve, reject) {
           var settings = {
             timerDuration: 0.1,
-            restDuration: 5
+            restDuration: 22
           }
           resolve(settings);
         });
@@ -30,8 +30,8 @@ export function fetchSettings (uid) {
         // we return here all the settings related to the user uid.
         function(resolve, reject) {
           var settings = {
-            timerDuration: 0.1,
-            restDuration: 5
+            timerDuration: 13,
+            restDuration: 29
           }
           resolve(settings);
         });

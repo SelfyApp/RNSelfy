@@ -24,13 +24,13 @@ class SettingsContainer extends Component {
   }
   handleTimerComplete = () => {
     this.props.dispatch(handleAndUpdateTimer(this.state.timerDuration))
-      .then(() => this.props.dispatch(showFlashNotification({text: 'Duration Saved!'})))
-      .catch(() => this.props.dispatch(showFlashNotification({text: 'Error Updating Timer Duration'})))
+      .then(() => this.props.dispatch(showFlashNotification({text: 'Distance Saved!'})))
+      .catch(() => this.props.dispatch(showFlashNotification({text: 'Error Updating Distance'})))
   }
   handleRestComplete = () => {
     this.props.dispatch(handleAndUpdateRest(this.state.restDuration))
-      .then(() => this.props.dispatch(showFlashNotification({text: 'Duration Saved!'})))
-      .catch(() => this.props.dispatch(showFlashNotification({text: 'Error Updating Timer Duration'})))
+      .then(() => this.props.dispatch(showFlashNotification({text: 'Age Saved!'})))
+      .catch(() => this.props.dispatch(showFlashNotification({text: 'Error Updating Age'})))
   }
   handleLogout = () => {
     this.props.dispatch(handleUnauth())

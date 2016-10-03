@@ -20,13 +20,16 @@ import { ReactModoroNavbar, Gear, Hamburger, Exit, OverlayProfile } from './../.
 import clamp from 'clamp';
 
 var navigationBottomBar;
+var nopeYupContainerBar;
 var backgroundOpacity;
 if (Platform.OS === 'android'){
   navigationBottomBar = 0;
-  backgroundOpacity = .7
+  backgroundOpacity = 0
+  nopeYupContainerBar = 20
 } else {
   navigationBottomBar = 20;
-  backgroundOpacity = .2
+  backgroundOpacity = 0
+  nopeYupContainerBar = 0
 } 
 const {height, width} = Dimensions.get('window');
 
@@ -39,41 +42,47 @@ var styles = StyleSheet.create({
       height: undefined,
       backgroundColor:'transparent',
       flexDirection: 'column',
-
     },
-    containerStyle: {
+    nopeYupContainer: {
+      position: 'absolute',
+      flex: 1,
+      bottom: 0,
+      width: width,
+      height: height - width - 140 - nopeYupContainerBar
+    },
+    containerStyle: { 
       backgroundColor: 'rgba(255,255,255,'+backgroundOpacity+')',
-      width: undefined,
+      width: width,
       flex: 1, 
     },
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center', 
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center', 
     },
     yup: {
-        position: 'absolute',
-        padding: 20,
-        bottom: (height - width - 180 + navigationBottomBar)/2,
-        borderRadius: 5,
-        right: 20,
+      position: 'absolute',
+      padding: 20,
+      bottom: (height - width - 190 + navigationBottomBar - 2*nopeYupContainerBar)/2,
+      borderRadius: 5,
+      right: 20,
     },
     yupText: { 
-        fontSize: 36,
-        color: '#000000',
-        fontFamily: 'AvenirNext-Bold',
+      fontSize: 36,
+      color: '#000000',
+      fontFamily: 'AvenirNext-Bold',
     },
     nope: {
-        position: 'absolute',
-        bottom: (height - width - 180 + navigationBottomBar)/2,
-        padding: 20,
-        borderRadius: 5,
-        left: 20,
+      position: 'absolute',
+      bottom: (height - width - 190 + navigationBottomBar - 2*nopeYupContainerBar)/2,
+      padding: 20,
+      borderRadius: 5,
+      left: 20,
     },
     nopeText: {
-        fontSize: 36,
-        color: '#000000',
-        fontFamily: 'AvenirNext-Bold',
+      fontSize: 36,
+      color: '#000000',
+      fontFamily: 'AvenirNext-Bold',
     }
 });
 
@@ -225,7 +234,7 @@ class SwipeCards extends Component {
     let animatedNopeStyles = {transform: [{scale: nopeScale}]}
 
         return (
-          <Image blurRadius={25} source={!this.state.card ? require('../../images/blurBackground.jpg') : {uri: this.state.card.image}} resizeMode='cover' style={styles.blurContainer}> 
+          <Image source={ require('../../images/blurBackground.jpg')} resizeMode='cover' style={styles.blurContainer}> 
             <View style={styles.containerStyle}>
                 <Modal
                   animationType={"fade"}
@@ -241,45 +250,50 @@ class SwipeCards extends Component {
                 title='Swipe'
                 leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
                 rightButton={<Gear onPress={this.props.handleToSettings}/>} />
-                 { this.props.renderNope
-                    ? this.props.renderNope(pan)
-                    : (
-                        this.state.card && this.props.showNope
-                        ? (
-                          <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
-                              {this.props.noView
-                                  ? this.props.noView
-                                  : <Text style={this.props.nopeTextStyle}>{this.props.noText ? this.props.noText : "Nope!"}</Text>
-                              }
-                          </Animated.View>
-                          )
-                        : null
-                      )
-                  }
-
-                  { this.props.renderYup
-                    ? this.props.renderYup(pan)
-                    : (
-                        this.state.card &&  this.props.showYup 
-                        ? (
-                          <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
-                              {this.props.yupView
-                                  ? this.props.yupView
-                                  : <Text style={this.props.yupTextStyle}>{this.props.yupText? this.props.yupText : "Yup!"}</Text>
-                              }
-                          </Animated.View>
-                        )
-                        : null
-                      )
-                  }
-
-                  { this.state.card
+                   { this.state.card
                       ? (
+                  <View style={{flex: 1}}>
+                  <Image source={ require('../../images/likeDislikeBackground.jpg')} resizeMode='stretch' style={styles.nopeYupContainer}> 
+                    { this.props.renderNope
+                      ? this.props.renderNope(pan)
+                      : (
+                          this.state.card && this.props.showNope
+                          ? (
+                            <Animated.View style={[this.props.nopeStyle, animatedNopeStyles]}>
+                                {this.props.noView
+                                    ? this.props.noView
+                                    : <Text style={this.props.nopeTextStyle}>{this.props.noText ? this.props.noText : "Nope!"}</Text>
+                                }
+                            </Animated.View>
+                            )
+                          : null
+                        )
+                    }
+
+                    { this.props.renderYup
+                      ? this.props.renderYup(pan)
+                      : (
+                          this.state.card &&  this.props.showYup 
+                          ? (
+                            <Animated.View style={[this.props.yupStyle, animatedYupStyles]}>
+                                {this.props.yupView
+                                    ? this.props.yupView
+                                    : <Text style={this.props.yupTextStyle}>{this.props.yupText? this.props.yupText : "Yup!"}</Text>
+                                }
+                            </Animated.View>
+                          )
+                          : null
+                        )
+                    }
+                    </Image>                    
+               
                       <Animated.View style={[this.props.cardStyle, animatedCardstyles]} {...this._panResponder.panHandlers}>
                           {this.renderCard(this.state.card, this._seeProfile.bind(this))}
                       </Animated.View>
+                    </View>
                   )
                       : this.renderNoMoreCards() }
+
 
             </View>
            </Image> 

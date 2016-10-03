@@ -14,8 +14,7 @@ export function authWithToken (accesToken) {
     .signInWithCredential(accesToken)
 }
 
-export function updateUser (user) {
-  console.log('calling update user ' , user)
+export function updateUser (user) { 
   return new Promise((resolve, reject) => {
     setTimeout(resolve, 100, user);
   }); 
