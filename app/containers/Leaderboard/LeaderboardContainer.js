@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { ListView, Text } from 'react-native'
+import { ListView, Text,   } from 'react-native'
 import { Leaderboard } from './../../components'
 import { connect } from 'react-redux'
 import { fetchAndSetScoresListener } from './../../redux/modules/scores'
@@ -107,6 +107,7 @@ class LeaderboardContainer extends Component {
     openDrawer: PropTypes.func,
     navigator: PropTypes.object.isRequired,
   }
+ 
 
   constructor (props) {
     super(props)
@@ -115,6 +116,7 @@ class LeaderboardContainer extends Component {
         sectionHeaderHasChanged: (s1, s2) => s1 !== s2
       });
     this.state = {
+      modal: false,
       dataSource: this.dataSource.cloneWithRowsAndSections(this.convertFoodArrayToMap())
     }
   }
@@ -132,7 +134,9 @@ class LeaderboardContainer extends Component {
     }
   }
   renderRow = ({displayName, photoURL, score}) => {
-    return <Leader name={displayName} avatar={photoURL} score={score} />
+    return (
+        <Leader openProfileFunction={this._seeProfile.bind(this)} name={displayName} avatar={photoURL} score={score} />
+      )
   }
 
   renderSectionHeader(sectionData, category) {
@@ -159,9 +163,22 @@ class LeaderboardContainer extends Component {
     return goldenCategoryMap;
   }
 
+  _seeProfile(){
+    this.setState({
+        modal: true
+      })
+  }
+  _closeProfile(){
+    this.setState({
+        modal: false
+      })
+  }
+
   render () {
     return (
       <Leaderboard  
+        modal={this.state.modal}
+        closeModal={this._closeProfile.bind(this)}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
         renderSectionHeader={this.renderSectionHeader}

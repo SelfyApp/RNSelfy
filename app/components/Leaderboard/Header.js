@@ -17,11 +17,11 @@ export default function Header (props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    padding: 0,
+    padding: 10,
     margin: 0,
     borderBottomWidth: 1,
-    backgroundColor: '#fbedd7',
-    borderColor: colors.white,
+    backgroundColor: '#30303a',
+    borderColor: '#96969b',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontWeight: "700",
     fontSize: fontSizes.secondary,
-    color: colors.primary,
+    color: colors.white,
   },
  
 })

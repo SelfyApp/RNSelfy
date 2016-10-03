@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native'
 import { colors, fontSizes } from './../../styles'
 
 Leader.propTypes = {
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
+  openProfileFunction: PropTypes.func.isRequired
 }
 
 export default function Leader (props) {
   return (
+    <TouchableHighlight onPress={props.openProfileFunction}>
     <View style={styles.container}>
       <View style={styles.userInfo}>
         <Image style={styles.image} source={{uri: props.avatar}}/>
@@ -17,6 +19,7 @@ export default function Leader (props) {
       </View>
       <Text style={styles.scoreText}>Score: {props.score}</Text>
     </View>
+    </TouchableHighlight>
   )
 }
 
@@ -25,8 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     borderBottomWidth: 1,
-    backgroundColor: '#ffe2b5',
-    borderColor: colors.border,
+    backgroundColor: '#262630',
+    borderColor: '#707176',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -44,9 +47,9 @@ const styles = StyleSheet.create({
   nameText: {
     padding: 5,
     fontSize: fontSizes.secondary,
-    color: colors.primary,
+    color: colors.secondary,
   },
   scoreText: {
-    color: colors.secondary,
+    color: colors.primary,
   },
 })
