@@ -242,7 +242,6 @@ class SwipeCards extends Component {
                   visible={this.state.modal}
                   onRequestClose={this._closeProfile}
                 >
-                   
                   <OverlayProfile />
                   <Exit style={styles.exitModal} onPress={this._closeProfile.bind(this)} />  
                </Modal>
