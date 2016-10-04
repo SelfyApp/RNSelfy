@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, DrawerLayoutAndroid } from 'react-native'
-import { HomeContainer, LeaderboardContainer, SwipeContainer, TakeSelfyContainer } from './../../containers'
+import { UserProfileContainer, LeaderboardContainer, SwipeContainer, TakeSelfyContainer } from './../../containers'
 import Drawer from './Drawer'
 
 FooterTabs.propTypes = {
@@ -22,7 +22,7 @@ export default function FooterTabs (props) {
           activeFooterTab={props.activeFooterTab}
           onTabSelect={props.onTabSelect} />
       )}>
-        {props.activeFooterTab === 'home' && <HomeContainer openDrawer={openDrawer} navigator={props.navigator}/> }
+        {props.activeFooterTab === 'home' && <UserProfileContainer openDrawer={openDrawer} navigator={props.navigator}/> }
         {props.activeFooterTab === 'leaderboard' && <LeaderboardContainer openDrawer={openDrawer} navigator={props.navigator}/>}
         {props.activeFooterTab === 'swipe' && <SwipeContainer openDrawer={openDrawer} navigator={props.navigator}/>}
         {props.activeFooterTab === 'takeSelfy' && <TakeSelfyContainer openDrawer={openDrawer} navigator={props.navigator}/>}
