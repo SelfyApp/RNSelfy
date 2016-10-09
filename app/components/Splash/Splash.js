@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 import { LoginButton } from 'react-native-fbsdk'
 import { colors, fontSizes } from './../../styles'
-const { height } = Dimensions.get('window')
+const { height,width } = Dimensions.get('window')
 
 Splash.propTypes = {
   onLoginFinished: PropTypes.func.isRequired,
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
+    width: width,
     resizeMode: 'contain',
     height: height * .4 > 300 ? 300 : height * .4
   },

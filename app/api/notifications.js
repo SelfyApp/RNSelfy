@@ -32,3 +32,7 @@ function registerNotification(){
 };
 
 registerNotification();
+
+const notifications = this;
+
+export {notifications} 
