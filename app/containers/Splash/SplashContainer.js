@@ -12,6 +12,7 @@ class SplashContainer extends Component {
     } else if (result.isCancelled === true) {
       console.log('Auth cancelled')
     } else {
+      console.log(result)
       this.props.dispatch(handleAuthRemotely())
     }
   }

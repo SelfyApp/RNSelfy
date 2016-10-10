@@ -1,73 +1,82 @@
-import React, { PropTypes } from 'react'
-import { View, StyleSheet, Text, TouchableOpacity, StatusBar, Switch } from 'react-native'
+import React, {PropTypes, Component} from 'react'
+import { View, StyleSheet, Text, TouchableOpacity, StatusBar, Switch, Image, Alert} from 'react-native'
 import { ReactModoroNavbar, Close } from './../../components'
 import { colors, fontSizes } from './../../styles'
-import Slider from 'react-native-slider'
+import Slider from 'react-native-slider' 
+import { connect } from 'react-redux'
 
-Settings.propTypes = {
-  timerDuration: PropTypes.number.isRequired,
-  restDuration: PropTypes.number.isRequired,
-  onBack: PropTypes.func.isRequired,
-  onTimerChange: PropTypes.func.isRequired,
-  onRestChange: PropTypes.func.isRequired,
-  onRestComplete: PropTypes.func.isRequired,
-  onTimerComplete: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-}
+class Settings extends Component {
 
-export default function Settings (props) {
-  return (
+
+  static propTypes = {
+    timerDuration: PropTypes.number.isRequired,
+    restDuration: PropTypes.number.isRequired,
+    onBack: PropTypes.func.isRequired,
+    onTimerChange: PropTypes.func.isRequired,
+    onRestChange: PropTypes.func.isRequired,
+    onRestComplete: PropTypes.func.isRequired,
+    onTimerComplete: PropTypes.func.isRequired,
+    onLogout: PropTypes.func.isRequired,
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      avatarSource: null
+    }
+  }
+
+  onValueChange(value){
+    this.setState({switchValue: value});
+  }
+
+  render() {
+    return (
+ 
     <View style={styles.container}>
       <ReactModoroNavbar
         title='Settings'
-        leftButton={<Close onPress={props.onBack}/>} />
-      <View style={styles.sliderContainer}>
-        <Text style={styles.titleText}>Distance</Text>
-        <Text style={styles.valueText}>{props.timerDuration}</Text>
-        <Text style={styles.minutes}>{props.timerDuration === 1 ? 'Kilometer' : 'Kilometers'}</Text>
-        <Slider
-          minimumValue={1}
-          maximumValue={60}
-          onSlidingComplete={props.onTimerComplete}
-          thumbTintColor={colors.border}
-          step={1}
-          minimumTrackTintColor={colors.blue}
-          value={props.timerDuration}
-          onValueChange={props.onTimerChange} />
-      </View>
-      <View style={styles.sliderContainer}>
-        <Text> Men Pictures: </Text>
-        <Switch
-            onTintColor={colors.blue}
-            onValueChange={(value) => {/*this.setState({falseSwitchIsOn: value}*/ } }
-            style={{marginBottom: 10}}
-            value={false} />
-        <Text> Women Pictures: </Text>
-        <Switch
-            onTintColor={colors.blue}
-            onValueChange={(value) => {/*this.setState({falseSwitchIsOn: value}*/ } }
-            style={{marginBottom: 10}}
-            value={true} />
-      </View>    
-      <View style={styles.sliderContainer}>
-        <Text style={styles.titleText}>Age Range</Text>
-        <Text style={styles.valueText}>{props.restDuration}</Text>
-        <Text style={styles.minutes}>{props.restDuration === 1 ? 'Year' : 'Years'}</Text>
-        <Slider
-          minimumValue={18}
-          maximumValue={60}
-          onSlidingComplete={props.onRestComplete}
-          thumbTintColor={colors.border}
-          step={1}
-          minimumTrackTintColor={colors.blue}
-          value={props.restDuration}
-          onValueChange={props.onRestChange} />
-      </View>
-      <TouchableOpacity onPress={props.onLogout} style={styles.logout}>
+        leftButton={<Close onPress={this.props.onBack}/>} />
+ 
+         <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+          <View style={styles.sliderContainer}>
+            <Text style={styles.titleText}>Distance</Text>
+            <Text style={styles.valueText}>{this.props.timerDuration}</Text>
+            <Text style={styles.minutes}>{this.props.timerDuration === 1 ? 'Kilometer' : 'Kilometers'}</Text>
+            <Slider
+              minimumValue={1}
+              maximumValue={60}
+              onSlidingComplete={this.props.onTimerComplete}
+              thumbTintColor={colors.border}
+              step={1}
+              minimumTrackTintColor={colors.blue}
+              value={this.props.timerDuration}
+              onValueChange={this.props.onTimerChange} />
+          </View>
+         </View>
+
+
+           <View style={styles.sliderContainer}>
+              <Text style={styles.titleText}>Age Range</Text>
+              <Text style={styles.valueText}>{this.props.restDuration}</Text>
+              <Text style={styles.minutes}>{this.props.restDuration === 1 ? 'Year' : 'Years'}</Text>
+              <Slider
+                minimumValue={18}
+                maximumValue={60}
+                onSlidingComplete={this.props.onRestComplete}
+                thumbTintColor={colors.border}
+                step={1}
+                minimumTrackTintColor={colors.blue}
+                value={this.props.restDuration}
+                onValueChange={this.props.onRestChange} />
+            </View>
+       
+      <TouchableOpacity onPress={this.props.onLogout} style={styles.logout}>
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>
-  )
+  )}
+
 }
 
 const styles = StyleSheet.create({
@@ -108,5 +117,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: fontSizes.secondary,
     textAlign: 'center',
-  },
+  }
 })
+export default connect()(Settings)

@@ -6,7 +6,7 @@ import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
 const { height } = Dimensions.get('window')
 
 UserProfile.propTypes = {
-  score: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
   openDrawer: PropTypes.func,
   handleToSettings: PropTypes.func.isRequired,
 }

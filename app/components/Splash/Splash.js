@@ -16,6 +16,7 @@ export default function Splash (props) {
       </View>
       <View style={styles.loginContainer}>
         <LoginButton
+          readPermissions={['email','public_profile']}
           style={{
             height: 30,
             width: 180,

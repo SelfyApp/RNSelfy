@@ -4,7 +4,6 @@ import { ReactModoroNavbar, Hamburger, Gear, Exit, OverlayProfile } from './../.
 import { colors } from './../../styles'
 
 Leaderboard.propTypes = {
-  leaders: PropTypes.array.isRequired,
   listenerSet: PropTypes.bool.isRequired,
   openDrawer: PropTypes.func,
   dataSource: PropTypes.object.isRequired,

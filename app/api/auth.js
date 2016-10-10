@@ -3,7 +3,9 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk'
 
 export function getAccessToken () {
  
+  // TODO remove this debug code
   AccessToken.getCurrentAccessToken().then(function(token){
+    console.log(token);
 
   })
   return AccessToken.getCurrentAccessToken()

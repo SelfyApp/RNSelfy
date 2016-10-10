@@ -6,7 +6,7 @@ import { PreSplash, FlashNotification } from './../../components'
 import { auth } from './../../config/constants'
 import { onAuthChange, handleAuthRemotely } from './../../redux/modules/authentication'
 import { hideFlashNotification } from './../../redux/modules/flashNotification'
-import notifications from  './../../api/notifications'
+import { notifications } from  './../../api/notifications'
 console.disableYellowBox = true
 
 class AppContainer extends Component {
