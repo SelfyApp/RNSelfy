@@ -11,6 +11,8 @@ export default class ReactModoroNavigator extends Component {
       return <SplashContainer  style={{flex: 1, backgroundColor: '#00ccff'}} navigator={navigator} />
     } else if (route.settings === true) {
       return <SettingsContainer  style={{flex: 1, backgroundColor: '#ffcc00'}} navigator={navigator} />
+    } else if( this.props.isAuthed === true && this.props.isNew === true) {
+      return <OnboardingContainer  style={{flex: 1, backgroundColor: '#ff0000'}} navigator={navigator} />
     }
 
     return <FooterTabsContainer navigator={navigator} />
