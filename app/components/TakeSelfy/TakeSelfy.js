@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { View, StyleSheet, Text, Image, Dimensions, Platform } from 'react-native'
-import { LoginButton } from 'react-native-fbsdk'
+
 import { connect } from 'react-redux'
 import { colors, fontSizes } from './../../styles'
 import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
@@ -125,12 +125,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f44444'
-  },
-  slogan: {
-    color: colors.blue,
-    fontSize: 40,
-    margin: 20,
-    textAlign: 'center',
   },
   image: {
     resizeMode: 'contain',

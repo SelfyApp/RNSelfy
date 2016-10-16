@@ -89,6 +89,7 @@ const initialState = {
   isAuthed: false,
   isAuthenticating: false,
   authedId: '',
+  isNew: false,
 }
 
 export default function authentication (state = initialState, action) { 
@@ -109,6 +110,7 @@ export default function authentication (state = initialState, action) {
         isAuthed: true,
         isAuthenticating: false,
         authedId: action.uid,
+        isNew: true,
       }
     default :
       return state

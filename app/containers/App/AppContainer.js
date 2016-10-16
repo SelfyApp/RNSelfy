@@ -13,6 +13,7 @@ class AppContainer extends Component {
   static propTypes = {
     isAuthenticating: PropTypes.bool.isRequired,
     isAuthed: PropTypes.bool.isRequired,
+    isNew: PropTypes.bool.isRequired,
     flashNotificationIsPermanent: PropTypes.bool.isRequired,
     flashNotificationLocation: PropTypes.string.isRequired,
     flashNotificationText: PropTypes.string.isRequired,
@@ -37,7 +38,7 @@ class AppContainer extends Component {
         />
         {this.props.isAuthenticating === true
             ? <PreSplash />
-            : <ReactModoroNavigator isAuthed={this.props.isAuthed} />}
+            : <ReactModoroNavigator isNew={this.props.isNew} isAuthed={this.props.isAuthed} />}
         {this.props.showFlashNotification === true
           ? <FlashNotification
               permanent={this.props.flashNotificationIsPermanent}
@@ -50,10 +51,11 @@ class AppContainer extends Component {
   }
 }
 
-function mapStateToProps ({authentication, flashNotification}) {
+function mapStateToProps ({authentication, flashNotification, users}) {
   return {
     isAuthenticating: authentication.isAuthenticating,
     isAuthed: authentication.isAuthed,
+    isNew: users.isNew,
     flashNotificationIsPermanent: flashNotification.permanent,
     flashNotificationLocation: flashNotification.location,
     flashNotificationText: flashNotification.text,
