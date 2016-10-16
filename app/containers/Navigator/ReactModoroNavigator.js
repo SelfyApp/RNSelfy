@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { View, Navigator, Platform, StatusBar } from 'react-native'
-import { SplashContainer, FooterTabsContainer, SettingsContainer } from './../../containers'
+import { SplashContainer, OnboardingContainer, FooterTabsContainer, SettingsContainer } from './../../containers'
 
 export default class ReactModoroNavigator extends Component {
   static propTypes = {
