@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import * as reducers from './redux'
 import devTools from 'remote-redux-devtools'
 import { LOGGING_OUT } from './redux/modules/authentication'
+import { USER_ONBOARDED } from './redux/modules/users'
 
 const appReducer = combineReducers(reducers)
 

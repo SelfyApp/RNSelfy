@@ -1,9 +1,8 @@
 const ADD_USER = 'ADD_USER'
 const ADD_MULTIPLE_USERS = 'ADD_MULTIPLE_USERS'
+const USER_ONBOARDED = 'USER_ONBOARDED'
 
 export function addUser(uid, user) {
-  console.log('ADD USER ')
-  console.log(uid, user)
   return {
     type: ADD_USER,
     uid,
@@ -17,6 +16,14 @@ export function addMultipleUsers (users) {
     users,
   }
 }
+export function userOnboarded(){
+  return {
+    type: USER_ONBOARDED
+  }
+}
+const initialState = {
+  isNew: true,
+}
 
 export default function users (state = {}, action) {
   console.log('Register user', action.user, action.type)
@@ -25,11 +32,17 @@ export default function users (state = {}, action) {
       return {
         ...state,
         [action.uid]: action.user,
+        isNew: true,
       }
     case ADD_MULTIPLE_USERS :
       return {
         ...state,
         ...action.users,
+      }
+    case USER_ONBOARDED:
+      return {
+        ...state,
+        isNew: false
       }
     default :
       return state

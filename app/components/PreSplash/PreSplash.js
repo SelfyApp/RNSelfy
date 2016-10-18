@@ -34,7 +34,7 @@ export default class PreSplash extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text> Pre Splash </Text>
+        <Text> Please Wait </Text>
         <Animated.Image
           style={[styles.image, this.getTransform()]}
           source={require('../../images/logo.png')} />
