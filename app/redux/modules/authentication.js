@@ -3,13 +3,14 @@ import { fetchSettings } from './../../api/settings'
 import { addSettingsTimerDuration, addSettingsRestDuration } from './../../redux/modules/settings'
 import { fetchAndHandleScore } from './../../redux/modules/scores'
 
+
+
 const AUTHENTICATING = 'AUTHENTICATING'
 const NOT_AUTHED = 'NOT_AUTHED'
 const IS_AUTHED = 'IS_AUTHED'
 export const LOGGING_OUT = 'LOGGING_OUT'
 
 function authenticating () {
-   
   return {
     type: AUTHENTICATING,
   }
@@ -43,9 +44,11 @@ export function handleAuthRemotely () {
       .then(function (accessToken) {
         if(accessToken){
           // I have an access token
-          return authWithToken(accessToken) 
+          console.log('i got token', accessToken.accessToken)
+          return authWithToken(accessToken.accessToken) 
         } else {
           // I don't have an access token, I need to relogin via facebook
+          console.log('i didnt get token');
           dispatch(notAuthed())
         }
       })
@@ -53,11 +56,15 @@ export function handleAuthRemotely () {
   }
 }
 
+
+
 export function onAuthChange (user) { 
+  console.log('got auth change')
   return function (dispatch) { 
     if (!user) {
       dispatch(notAuthed())
     } else {
+      console.log(' I HAVE A USER ')
        
       const { uid, displayName, photoURL } = user
       const { userID } = uid
@@ -88,8 +95,7 @@ export function handleUnauth () {
 const initialState = {
   isAuthed: false,
   isAuthenticating: false,
-  authedId: '',
-  isNew: false,
+  authedId: '', 
 }
 
 export default function authentication (state = initialState, action) { 
@@ -109,8 +115,7 @@ export default function authentication (state = initialState, action) {
       return {
         isAuthed: true,
         isAuthenticating: false,
-        authedId: action.uid,
-        isNew: true,
+        authedId: action.uid, 
       }
     default :
       return state

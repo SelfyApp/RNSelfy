@@ -3,9 +3,10 @@ import { View, Text, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import { ReactModoroNavigator } from './../../containers'
 import { PreSplash, FlashNotification } from './../../components'
-import { auth } from './../../config/constants'
+import { onAuthStateChanged } from './../../api/auth'
 import { onAuthChange, handleAuthRemotely } from './../../redux/modules/authentication'
 import { hideFlashNotification } from './../../redux/modules/flashNotification'
+import { userOnboarded } from './../../redux/modules/users'
 import { notifications } from  './../../api/notifications'
 console.disableYellowBox = true
 
@@ -13,7 +14,7 @@ class AppContainer extends Component {
   static propTypes = {
     isAuthenticating: PropTypes.bool.isRequired,
     isAuthed: PropTypes.bool.isRequired,
-    isNew: PropTypes.bool.isRequired,
+    isNew: PropTypes.bool,
     flashNotificationIsPermanent: PropTypes.bool.isRequired,
     flashNotificationLocation: PropTypes.string.isRequired,
     flashNotificationText: PropTypes.string.isRequired,
@@ -21,7 +22,7 @@ class AppContainer extends Component {
   }
   componentDidMount () {
     // Attach a callback when you have a change in the user
-    auth.onAuthStateChanged((user) => this.props.dispatch(onAuthChange(user)))
+    onAuthStateChanged((user) => this.props.dispatch(onAuthChange(user)))
     // on bootstrap try to handle an automatic authentication
     // for the time being is handling the case of being logged in with Facebook
     // and the session is still available (no need to go through the auth process)
@@ -52,10 +53,11 @@ class AppContainer extends Component {
 }
 
 function mapStateToProps ({authentication, flashNotification, users}) {
+  console.log('map state to props ', users)
   return {
     isAuthenticating: authentication.isAuthenticating,
     isAuthed: authentication.isAuthed,
-    isNew: users.isNew,
+    isNew: users.isNew || false,
     flashNotificationIsPermanent: flashNotification.permanent,
     flashNotificationLocation: flashNotification.location,
     flashNotificationText: flashNotification.text,
