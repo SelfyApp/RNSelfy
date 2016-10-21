@@ -48,7 +48,7 @@ function mapStateToProps ({users, authentication, scores}) {
   const { authedId } = authentication
   return {
     photoURL: users[authedId].photoURL,
-    displayName: users[authedId].displayName,
+    displayName: 'users[authedId].displayName',
     score: scores.usersScores[authedId],
   }
 }
