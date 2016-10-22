@@ -18,43 +18,5 @@ export function fetchUser (uid) {
 
 
 export function fetchFriends(uid){
-	var API_URL = 'http://demo9383702.mockable.io/users';
-
-
-	fetch(API_URL).then((response) => response.json()).then((responseData) => {
-	    var organizations = responseData.results,
-	        length = organizations.length,
-	        dataBlob = {},
-	        sectionIDs = [],
-	        rowIDs = [],
-	        organization,
-	        users,
-	        userLength,
-	        user,
-	        i,
-	        j;
-
-	    for (i = 0; i < length; i++) {
-	        organization = organizations[i];
-
-	        sectionIDs.push(organization.id);
-	        dataBlob[organization.id] = organization.organization;
-
-	        users = organization.users;
-	        userLength = users.length;
-	        
-	        rowIDs[i] = [];
-
-	        for(j = 0; j < userLength; j++) {
-	            user = users[j].user;
-	            rowIDs[i].push(user.md5);
-
-	            dataBlob[organization.id + ':' + user.md5] = user;
-	        }
-	    }
- 		return [dataBlob, sectionIDs, rowIDs]
-	});      
-
-
-
+ 
  }
