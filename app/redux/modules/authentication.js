@@ -1,7 +1,6 @@
 import { getAccessToken, authWithToken, updateUser, logout } from './../../api/auth'
 import { fetchSettings } from './../../api/settings'
 import { addSettingsTimerDuration, addSettingsRestDuration } from './../../redux/modules/settings'
-import { fetchAndHandleScore } from './../../redux/modules/scores'
 import { addUser } from './users'
 
 
@@ -74,8 +73,7 @@ export function onAuthChange (user) {
       fetchSettings(id)
       .then((settings) => Promise.all([
         dispatch(addSettingsTimerDuration(settings.timerDuration)),
-        dispatch(addSettingsRestDuration(settings.restDuration)),
-       // dispatch(fetchAndHandleScore(id)),
+        dispatch(addSettingsRestDuration(settings.restDuration)) 
       ]))
       .then(() => dispatch(isAuthed(id)))
     }

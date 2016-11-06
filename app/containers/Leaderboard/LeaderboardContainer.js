@@ -1,8 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { ListView, Text,   } from 'react-native'
 import { Leaderboard } from './../../components'
-import { connect } from 'react-redux'
-import { fetchAndSetScoresListener } from './../../redux/modules/scores'
+import { connect } from 'react-redux' 
 import Leader from './../../components/Leaderboard/Leader'
 import Header from './../../components/Leaderboard/Header'
 
@@ -101,13 +100,11 @@ let goldenUsers = [
 
 class LeaderboardContainer extends Component {
    
-  static propTypes = {
-    listenerSet: PropTypes.bool.isRequired,
+  static propTypes = { 
     leaders: PropTypes.array.isRequired,
     openDrawer: PropTypes.func,
     navigator: PropTypes.object.isRequired,
   }
- 
 
   constructor (props) {
     super(props)
@@ -120,11 +117,12 @@ class LeaderboardContainer extends Component {
       dataSource: this.dataSource.cloneWithRowsAndSections(this.convertFoodArrayToMap())
     }
   }
+
   componentDidMount () {
     if (this.props.listenerSet === false) {
-      this.props.dispatch(fetchAndSetScoresListener())
     }
   }
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.leaders !== this.props.leaders) {
       this.setState({
@@ -133,6 +131,7 @@ class LeaderboardContainer extends Component {
       })
     }
   }
+
   renderRow = ({displayName, photoURL, score}) => {
     return (
         <Leader openProfileFunction={this._seeProfile.bind(this)} name={displayName} avatar={photoURL} score={score} />
@@ -151,6 +150,7 @@ class LeaderboardContainer extends Component {
       settings: true
     })
   }
+
   convertFoodArrayToMap = () =>  {
     var goldenCategoryMap = {}; // Create the blank map
     goldenUsers.forEach(function(golden) {
@@ -158,8 +158,10 @@ class LeaderboardContainer extends Component {
         // Create an entry in the map for the category if it hasn't yet been created
         goldenCategoryMap[golden.category] = [];
       } 
+      console.log(golden , golden.category)
       goldenCategoryMap[golden.category].push(golden);
     });
+    console.log('finished')
     return goldenCategoryMap;
   }
 
@@ -168,6 +170,7 @@ class LeaderboardContainer extends Component {
         modal: true
       })
   }
+
   _closeProfile(){
     this.setState({
         modal: false
@@ -181,19 +184,16 @@ class LeaderboardContainer extends Component {
         closeModal={this._closeProfile.bind(this)}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
-        renderSectionHeader={this.renderSectionHeader}
-        listenerSet={this.props.listenerSet}
+        renderSectionHeader={this.renderSectionHeader} 
         openDrawer={this.props.openDrawer}
-        handleToSettings={this.handleToSettings}
-      />
+        handleToSettings={this.handleToSettings} />
     )
   }
 }
 
 function mapStateToProps ({scores, users}) {
 
-  return {
-    listenerSet: scores.listenerSet,
+  return { 
     leaders: scores.leaderboardUids.map((uid) => {
       return {
         score: 10,
