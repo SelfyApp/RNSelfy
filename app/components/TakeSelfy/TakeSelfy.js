@@ -55,7 +55,7 @@ class TakeSelfy extends Component {
   }
 
   sendImage = () => {
-    this.props.dispatch(this.props.uploadImage('test', '1234'))
+    this.props.dispatch(this.props.uploadImage(this.state.avatarSource.uri))
   }
 
   takeSnapshot = () => {
@@ -73,8 +73,6 @@ class TakeSelfy extends Component {
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       }
@@ -107,9 +105,8 @@ class TakeSelfy extends Component {
             title='Swipe'
             leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
             rightButton={<Gear onPress={this.props.handleToSettings}/>} />
-
             { this.state.avatarSource &&
-               <Image style={styles.avatar} source={this.state.avatarSource} />
+              <Image style={styles.avatar} source={this.state.avatarSource} />
             }
             <Button style={styles.takeSnapshot} onPress={this.takeSnapshot.bind(this)}>
                Take Snapshot
@@ -120,11 +117,9 @@ class TakeSelfy extends Component {
             <Button style={styles.takeSnapshot} onPress={this.sendImage.bind(this)}>
                Upload
             </Button>
-
             { this.state.avatarSource &&
               <Text style={{margin: 8, textAlign: 'center'}}>{this.state.avatarSource.uri}</Text>
             }
-
         </View>
       )
   }

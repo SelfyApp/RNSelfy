@@ -312,19 +312,15 @@ Selfie.prototype.upvote = function(image) {
 /**
  * Publishes a new image for the authenticated user.
  *
- * @param {object} image - The image to publish.
- * @param {String} image.uri - URI pointing to the image to upload.
- * @param {String} image.name - The name of the image.
- * @param {String} image.type - The image's type (e.g. 'image/jpeg').
+ * @param {String} fileURI - URI pointing to the image to upload.
+ * @param {Object} params - Parameters for the POST call.
  */
-Selfie.prototype.publishImage = function(fileURL, params) {
+Selfie.prototype.publishImage = function(fileURI, params) {
   var self = this;
-   console.log('APi marco called',fileURL, params)
-
   var data = new FormData()
 
-  if (fileURL) {
-    data.append('image', {uri: fileURL, name: 'image.jpg', type: 'image/jpg'})
+  if (fileURI) {
+    data.append('image', {uri: fileURI, name: 'image.jpg', type: 'image/jpg'})
   }
   for (var key in params) {
     if (params.hasOwnProperty(key)) {
@@ -349,10 +345,9 @@ Selfie.prototype.publishImage = function(fileURL, params) {
     };
 
   	return fetch(baseUrl + '/images', config).then(function(res) {
-			 return res;
+      return res;
 		});
   });
-
 };
 
 /**
