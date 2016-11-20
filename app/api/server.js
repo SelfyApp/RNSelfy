@@ -219,6 +219,41 @@ Selfie.prototype.friends = function(user, options) {
 };
 
 /**
+ * Gets all subscribed of the user. People that are followed by the user that are not
+ * follow him/her back.
+ *
+ * @param {number} user - ID of the user for which to return subscribers [Optional].
+ *                        If not set subscribers for the authenticated user are returned.
+ * @param {number} options - Listing options [Optional].
+ * @param {number} options.pageSize - How many subscribers to be returned [Optional].
+ * @param {number} options.pageToken - From where to start listing friends [Optional].
+ */
+Selfie.prototype.subscribing = function(user, options) {
+  var self = this;
+  var endpoint = baseUrl + '/me/subscribing';
+  if (user) {
+    endpoint = baseUrl + '/users/' + user + '/subscribing'
+  }
+  var query = makeQuery(options);
+  query = query ? '?' + query : '';
+  return self.tokenPromise.then(function(selfieToken) {
+    return fetch(endpoint + query, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + selfieToken.token}
+    }).then(function(res) {
+      if (!isSuccess(res.status)) {
+        return res.json().then(function(json) {
+          return Promise.reject(json);
+        });
+      }
+      return res.json();
+    })
+  });
+};
+
+
+/**
  * Follows the provided user.
  *
  * @param {number} user - ID of the user to follow.
