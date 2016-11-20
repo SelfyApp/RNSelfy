@@ -1,6 +1,6 @@
 'use strict';
 
-var FormData = require('form-data');
+import {FormData} from 'FormData';
 var baseUrl = 'http://localhost:8080'
 /*
 fetch(baseUrl + '/users/1/profile')

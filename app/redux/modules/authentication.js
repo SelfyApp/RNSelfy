@@ -2,6 +2,7 @@ import { getAccessToken, authWithToken, updateUser, logout } from './../../api/a
 import { fetchSettings } from './../../api/settings'
 import { addSettingsTimerDuration, addSettingsRestDuration } from './../../redux/modules/settings'
 import { fetchAndHandleScore } from './../../redux/modules/scores'
+import { addUser } from './users'
 
 
 
@@ -23,11 +24,11 @@ function notAuthed () {
   }
 }
 
-function isAuthed (uid) {
+function isAuthed (id) {
   
   return {
     type: IS_AUTHED,
-    uid,
+    id,
   }
 }
 
@@ -65,22 +66,18 @@ export function onAuthChange (user) {
       dispatch(notAuthed())
     } else {
       console.log(' I HAVE A USER ')
-       
-      const { uid, displayName, photoURL } = user
-      const { userID } = uid
-      console.log('user', userID)
-      updateUser({
-        userID,
-        displayName,
-        photoURL,
-      })
-      .then(() => fetchSettings(userID))
+      const { id } = user
+      // UPDATE THE MAIN USER 
+      console.log(user)
+      dispatch(addUser(id, user));
+
+      fetchSettings(id)
       .then((settings) => Promise.all([
         dispatch(addSettingsTimerDuration(settings.timerDuration)),
         dispatch(addSettingsRestDuration(settings.restDuration)),
-        dispatch(fetchAndHandleScore(userID)),
+       // dispatch(fetchAndHandleScore(id)),
       ]))
-      .then(() => dispatch(isAuthed(userID)))
+      .then(() => dispatch(isAuthed(id)))
     }
   }
 }
@@ -95,7 +92,7 @@ export function handleUnauth () {
 const initialState = {
   isAuthed: false,
   isAuthenticating: false,
-  authedId: '', 
+  id: -1, 
 }
 
 export default function authentication (state = initialState, action) { 
@@ -115,7 +112,7 @@ export default function authentication (state = initialState, action) {
       return {
         isAuthed: true,
         isAuthenticating: false,
-        authedId: action.uid, 
+        id: action.id, 
       }
     default :
       return state

@@ -6,12 +6,13 @@ import { ReactModoroNavbar, Gear, Hamburger } from './../../components'
 const { height } = Dimensions.get('window')
 
 UserProfile.propTypes = {
-  score: PropTypes.number.isRequired,
+  user: PropTypes.object,
   openDrawer: PropTypes.func,
   handleToSettings: PropTypes.func.isRequired,
 }
 
 export default function UserProfile (props) {
+  console.log(props.user)
   return (
     <View>
 
@@ -28,8 +29,8 @@ export default function UserProfile (props) {
      <View style={styles.container2} >
 
     </View>
-     <Text style={styles.profileText}> Giasone97 </Text>
-      <Text style={styles.scoreText}> score : {props.score} </Text> 
+     <Text style={styles.profileText}> {props.user.displayName} </Text>
+      <Text style={styles.scoreText}> score : {props.user.score} </Text> 
      </View>
   )
 }

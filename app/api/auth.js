@@ -4,23 +4,17 @@ var Selfie = require('./server.js');
 
 var onAuthStateChangedCallbacks = [];
 
-
-
-export function getAccessToken () {
  
-  // TODO remove this debug code
-  AccessToken.getCurrentAccessToken().then(function(token){
-    console.log(token);
-
-  })
+export function getAccessToken () {
   return AccessToken.getCurrentAccessToken()
 }
 
+// TODO: rewrite this pseudo subscriber-topic pattern. 
+// Was part of the initial boilerplate but doesn't make much sense anymore
 export function onAuthStateChanged(callback) { 
   console.log('Registering a new callback on Auth State changed' , callback);
   onAuthStateChangedCallbacks.push(callback);
 }
-
 
 export function authWithToken (accessToken) {
   console.log('trying to access with token ')
@@ -31,24 +25,18 @@ export function authWithToken (accessToken) {
   return selfie.profile().then(function(profile){
     console.log(profile);
       // allign profile to user
-      user = {
-          displayName: profile.displayName,
-          email: profile.email,
-          emailVerified: true,
-          isAnonymous: false,
-          photoURL: null,  
-          uid: profile.id
-      };
       // call onAuthStateChange
       for (var i = onAuthStateChangedCallbacks.length - 1; i >= 0; i--) {
+        // we callback all the subscriber to this event.
         console.log('calling callbacks',onAuthStateChangedCallbacks[i]);
-        onAuthStateChangedCallbacks[i](user);
+        onAuthStateChangedCallbacks[i](profile);
       }
-      return user;
+      return profile;
   })
   // auth.signInWithCredential(accesToken)
 }
 
+// this should update the user when server side. As it is is just mocking it.
 export function updateUser (user) { 
   return new Promise((resolve, reject) => {
     setTimeout(resolve, 100, user);

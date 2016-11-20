@@ -99,7 +99,7 @@ export function fetchAndSetScoresListener () {
       let leaderboardUids =[];
       let justScores= [];
       let users = [];
-      for(var i= 0; i< 40; i++) {
+      for(var i= 4; i< 40; i++) {
           var uid =  Math.floor(1000*Math.random())
           var user = {
             score: i,
@@ -108,7 +108,7 @@ export function fetchAndSetScoresListener () {
           }
           users[uid] = user;
           justScores[uid] = i;
-          leaderboardUids[uid] = uid;
+          leaderboardUids[id] = id;
       }
       dispatch(updateLeaderboard(leaderboardUids))
       dispatch(addScores(justScores))
@@ -176,7 +176,7 @@ function usersScores (state = {}, action) {
     case FETCHING_SCORE_SUCCESS :
       return {
         ...state,
-        [action.uid]: action.score,
+        [action.id]: action.score,
       }
     case ADD_SCORES :
       return {
@@ -186,12 +186,12 @@ function usersScores (state = {}, action) {
     case INCREMENT_SCORE :
       return {
         ...state,
-        [action.uid]: state[action.uid] + action.amount,
+        [action.id]: state[action.id] + action.amount,
       }
     case DECREMENT_SCORE :
       return {
         ...state,
-        [action.uid]: state[action.uid] - action.amount,
+        [action.id]: state[action.id] - action.amount,
       }
     default :
       return state

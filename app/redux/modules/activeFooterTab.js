@@ -7,9 +7,10 @@ export function setFooterTab (tab) {
   }
 }
 
-const initialState = 'swipe'
+const initialState = 'home'
 
 export default function activeFooterTabs (state = initialState, action) {
+  console.log(action.tab);
   switch (action.type) {
     case SET_FOOTER_TAB :
       return action.tab
