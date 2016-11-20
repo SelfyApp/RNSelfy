@@ -16,6 +16,26 @@ export function fetchUser (uid) {
         });
 }
 
+export function getFriendsHandler(){
+  return  function (dispatch) { 
+    return getFriends()
+      .then(function(friends){
+        dispatch(updateFriends(friends));
+      })
+  }
+}
+
+export function getSubscribingHandler(){
+  return function (dispatch) { 
+    console.log('HANDLE CALLED')
+    return getSubscribing()
+      .then(function(subscribing){
+        console('GOT SUBSCRIBING REQUEST' + subscribing);
+        dispatch(updateSubscribing(subscribing));
+      })
+  }
+}
+
 
 export function fetchFriends(uid){
 	var API_URL = 'http://demo9383702.mockable.io/users';

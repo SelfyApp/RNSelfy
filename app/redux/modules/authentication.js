@@ -1,13 +1,14 @@
-import { getAccessToken, authWithToken, updateUser, logout } from './../../api/auth'
+import { getAccessToken, authWithToken, updateUser, logout, getFriends, getSubscribing } from './../../api/auth'
 import { fetchSettings } from './../../api/settings'
 import { addSettingsTimerDuration, addSettingsRestDuration } from './../../redux/modules/settings'
-import { addUser } from './users'
+import { addUser, subscribing, friends } from './users'
 
 
 
 const AUTHENTICATING = 'AUTHENTICATING'
 const NOT_AUTHED = 'NOT_AUTHED'
 const IS_AUTHED = 'IS_AUTHED'
+
 export const LOGGING_OUT = 'LOGGING_OUT'
 
 function authenticating () {
@@ -17,25 +18,24 @@ function authenticating () {
 }
 
 function notAuthed () {
-  
   return {
     type: NOT_AUTHED,
   }
 }
 
 function isAuthed (id) {
-  
   return {
     type: IS_AUTHED,
     id,
   }
-}
+} 
 
 function loggingOut () {
   return {
     type: LOGGING_OUT
   }
 }
+
 
 export function handleAuthRemotely () {
   return function (dispatch, getState) {
@@ -44,11 +44,9 @@ export function handleAuthRemotely () {
       .then(function (accessToken) {
         if(accessToken){
           // I have an access token
-          console.log('i got token', accessToken.accessToken)
           return authWithToken(accessToken.accessToken) 
         } else {
           // I don't have an access token, I need to relogin via facebook
-          console.log('i didnt get token');
           dispatch(notAuthed())
         }
       })
@@ -57,19 +55,20 @@ export function handleAuthRemotely () {
 }
 
 
+ 
 
-export function onAuthChange (user) { 
-  console.log('got auth change')
+
+export function onAuthChange (user) {
   return function (dispatch) { 
     if (!user) {
       dispatch(notAuthed())
     } else {
-      console.log(' I HAVE A USER ')
+      // I'm now autenticated. Star fatching all the information needed.
       const { id } = user
-      // UPDATE THE MAIN USER 
-      console.log(user)
+      // We have a user.
       dispatch(addUser(id, user));
-
+      dispatch(subscribing());
+      dispatch(friends());
       fetchSettings(id)
       .then((settings) => Promise.all([
         dispatch(addSettingsTimerDuration(settings.timerDuration)),

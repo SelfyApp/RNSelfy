@@ -114,7 +114,7 @@ class LeaderboardContainer extends Component {
       });
     this.state = {
       modal: false,
-      dataSource: this.dataSource.cloneWithRowsAndSections(this.convertFoodArrayToMap())
+      dataSource: this.dataSource.cloneWithRowsAndSections(this.convertListArrayToMap())
     }
   }
 
@@ -127,7 +127,7 @@ class LeaderboardContainer extends Component {
     if (nextProps.leaders !== this.props.leaders) {
       this.setState({
         // replace food with nextProps.leaders
-        dataSource: this.dataSource.cloneWithRowsAndSections(this.convertFoodArrayToMap())
+        dataSource: this.dataSource.cloneWithRowsAndSections(this.convertListArrayToMap())
       })
     }
   }
@@ -151,16 +151,37 @@ class LeaderboardContainer extends Component {
     })
   }
 
-  convertFoodArrayToMap = () =>  {
+  convertListArrayToMap = () =>  {
     var goldenCategoryMap = {}; // Create the blank map
-    goldenUsers.forEach(function(golden) {
-      if (!goldenCategoryMap[golden.category]) {
+    const FRIENDS = 'Friends';
+    const FOLLOWING = 'Following';
+    console.log('FROM THE LEADERBOARD PANNEL -------------')
+    console.log(this.props.friends);
+    console.log(this.props.subscribing);
+
+    // ADD FRIENDS 
+    this.props.friends.forEach(function(friend) {
+      if (!goldenCategoryMap[FRIENDS]) {
         // Create an entry in the map for the category if it hasn't yet been created
-        goldenCategoryMap[golden.category] = [];
+        goldenCategoryMap[FRIENDS] = [];
       } 
-      console.log(golden , golden.category)
-      goldenCategoryMap[golden.category].push(golden);
+      friend.photoURL = 'https://s-media-cache-ak0.pinimg.com/236x/f7/fb/a1/f7fba18994c65d1fc95d20d7fe63389f.jpg';
+      friend.score = 1234;
+      goldenCategoryMap[FRIENDS].push(friend);
     });
+
+    // ADD SUBSCRIBING 
+    this.props.subscribing.forEach(function(subscribing) {
+      if (!goldenCategoryMap[FOLLOWING]) {
+        // Create an entry in the map for the category if it hasn't yet been created
+        goldenCategoryMap[FOLLOWING] = [];
+      } 
+      subscribing.photoURL = 'https://s-media-cache-ak0.pinimg.com/236x/f7/fb/a1/f7fba18994c65d1fc95d20d7fe63389f.jpg';
+      subscribing.score = 4321;
+      goldenCategoryMap[FOLLOWING].push(subscribing);
+    });
+
+
     console.log('finished')
     return goldenCategoryMap;
   }
@@ -192,8 +213,9 @@ class LeaderboardContainer extends Component {
 }
 
 function mapStateToProps ({scores, users}) {
-
   return { 
+    friends: users.friends,
+    subscribing: users.subscribing,
     leaders: scores.leaderboardUids.map((uid) => {
       return {
         score: 10,
