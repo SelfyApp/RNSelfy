@@ -1,6 +1,5 @@
 'use strict';
-
-import {FormData} from 'FormData';
+ 
 var baseUrl = 'http://localhost:8080'
 /*
 fetch(baseUrl + '/users/1/profile')
@@ -348,34 +347,42 @@ Selfie.prototype.upvote = function(image) {
 /**
  * Publishes a new image for the authenticated user.
  *
- * @param {object} image - The image to publish.
- * @param {String} image.uri - URI pointing to the image to upload.
- * @param {String} image.name - The name of the image.
- * @param {String} image.type - The image's type (e.g. 'image/jpeg').
+ * @param {String} fileURI - URI pointing to the image to upload.
+ * @param {Object} params - Parameters for the POST call.
  */
-Selfie.prototype.publishImage = function(image) {
+Selfie.prototype.publishImage = function(fileURI, params) {
   var self = this;
- /*  var stream = fs.createReadStream(image.uri);
-  var formData = new FormData();
-	formData.append('file', stream);
-	formData.append('latlng', JSON.stringify({latitude: 50, longitude: 50}));
+  var data = new FormData()
+
+  if (fileURI) {
+    data.append('image', {uri: fileURI, name: 'image.jpg', type: 'image/jpg'})
+  }
+  for (var key in params) {
+    if (params.hasOwnProperty(key)) {
+      var value = params[key];
+      if (value instanceof Date) {
+        data.append(key, value.toISOString())
+      } else {
+        data.append(key, String(value))
+      }
+    }
+  }
+
   return self.tokenPromise.then(function(selfieToken) {
-  	return fetch(baseUrl + '/images', {
-  		method: 'POST',
-  		headers: {
-  			//'Content-Type': 'multipart/form-data',
-  			'Authorization': 'Bearer ' + selfieToken.token},
-  		body: formData
-		}).then(function(res) {
-			if (!isSuccess(res.status)) {
-				return res.json().then(function(json) {
-					return Promise.reject(json);
-				});
-			}
-			return res.json();
+    const config = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+        'Authorization': 'Bearer ' + selfieToken.token
+      },
+      body: data
+    };
+
+  	return fetch(baseUrl + '/images', config).then(function(res) {
+      return res;
 		});
   });
-  */
 };
 
 /**

@@ -206,7 +206,7 @@ const initialState = {
 }
 
 export default function scores (state = initialState, action) {
-  console.log(action.type)
+ 
   switch (action.type) {
     case FETCHING_SCORE :
       return {

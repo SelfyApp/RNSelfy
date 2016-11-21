@@ -4,7 +4,8 @@ var Selfie = require('./server.js');
 var selfie = null;
 var onAuthStateChangedCallbacks = [];
 
- 
+export var selfie;
+
 export function getAccessToken () {
   return AccessToken.getCurrentAccessToken()
 }
@@ -20,20 +21,27 @@ export function authWithToken (accessToken) {
   console.log('trying to access with token ')
 
   console.log(accessToken);
+
   selfie = new Selfie({facebookToken: accessToken});
 
   return selfie.profile().then(function(profile){
-    console.log(profile);
       // allign profile to user
       // call onAuthStateChange
       for (var i = onAuthStateChangedCallbacks.length - 1; i >= 0; i--) {
         // we callback all the subscriber to this event.
-        console.log('calling callbacks',onAuthStateChangedCallbacks[i]);
         onAuthStateChangedCallbacks[i](profile);
       }
       return profile;
-  })
-  // auth.signInWithCredential(accesToken)
+  }) 
+}
+
+export function getFriends(){ 
+  return selfie.friends();
+} 
+
+export function getSubscribing(){
+ 
+  return selfie.subscribing();
 }
 
 export function getFriends(){ 

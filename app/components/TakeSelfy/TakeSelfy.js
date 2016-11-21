@@ -14,6 +14,7 @@ class TakeSelfy extends Component {
   static propTypes = {
     openDrawer: PropTypes.func,
     handleToSettings: PropTypes.func.isRequired,
+    uploadImage: PropTypes.func.isRequired
   }
   constructor (props) {
     super(props)
@@ -53,6 +54,10 @@ class TakeSelfy extends Component {
     });
   }
 
+  sendImage = () => {
+    this.props.dispatch(this.props.uploadImage(this.state.avatarSource.uri))
+  }
+
   takeSnapshot = () => {
     /**
      * The first arg is the options object for customization (it can also be null or omitted for default options),
@@ -68,8 +73,6 @@ class TakeSelfy extends Component {
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       }
@@ -102,9 +105,8 @@ class TakeSelfy extends Component {
             title='Swipe'
             leftButton={Platform.OS === 'android' ? <Hamburger onPress={this.props.openDrawer} /> : null}
             rightButton={<Gear onPress={this.props.handleToSettings}/>} />
-
             { this.state.avatarSource &&
-               <Image style={styles.avatar} source={this.state.avatarSource} />
+              <Image style={styles.avatar} source={this.state.avatarSource} />
             }
             <Button style={styles.takeSnapshot} onPress={this.takeSnapshot.bind(this)}>
                Take Snapshot
@@ -112,11 +114,12 @@ class TakeSelfy extends Component {
             <Button style={styles.takeSnapshot} onPress={this.sendNotification.bind(this)}>
                Send Notification
             </Button>
-
+            <Button style={styles.takeSnapshot} onPress={this.sendImage.bind(this)}>
+               Upload
+            </Button>
             { this.state.avatarSource &&
               <Text style={{margin: 8, textAlign: 'center'}}>{this.state.avatarSource.uri}</Text>
             }
-
         </View>
       )
   }
