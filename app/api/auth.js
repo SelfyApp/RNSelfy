@@ -44,14 +44,7 @@ export function getSubscribing(){
   return selfie.subscribing();
 }
 
-export function getFriends(){ 
-  return selfie.friends();
-} 
-
-export function getSubscribing(){
  
-  return selfie.subscribing();
-}
 
 // this should update the user when server side. As it is is just mocking it.
 export function updateUser (user) { 

@@ -18,6 +18,7 @@ function uploadFinished () {
 
 
 export function uploadPicture(url, config) {
+  console.log('CLICKED UPOLOAD PICTURe -------')
   console.log(url,config)
 
   return function (dispatch) {

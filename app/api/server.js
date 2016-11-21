@@ -355,7 +355,8 @@ Selfie.prototype.publishImage = function(fileURI, params) {
   var data = new FormData()
 
   if (fileURI) {
-    data.append('image', {uri: fileURI, name: 'image.jpg', type: 'image/jpg'})
+    console.log('I HAVE FILE URI')
+    data.append('file':{uri: fileURI, name: 'image.jpg', type: 'image/jpg'})
   }
   for (var key in params) {
     if (params.hasOwnProperty(key)) {
@@ -378,6 +379,8 @@ Selfie.prototype.publishImage = function(fileURI, params) {
       },
       body: data
     };
+    console.log('CONFIG -----')
+    console.log(config)
 
   	return fetch(baseUrl + '/images', config).then(function(res) {
       return res;
