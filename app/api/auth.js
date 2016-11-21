@@ -1,7 +1,7 @@
 import { auth } from './../config/constants'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 var Selfie = require('./server.js');
-
+var selfie = null;
 var onAuthStateChangedCallbacks = [];
 
 export var selfie;
@@ -29,6 +29,15 @@ export function authWithToken (accessToken) {
       }
       return profile;
   }) 
+}
+
+export function getFriends(){ 
+  return selfie.friends();
+} 
+
+export function getSubscribing(){
+ 
+  return selfie.subscribing();
 }
 
 // this should update the user when server side. As it is is just mocking it.

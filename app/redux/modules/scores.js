@@ -120,9 +120,9 @@ export function fetchAndSetScoresListener () {
   }
 }
 
-export function fetchAndHandleScore (uid) {
-  console.log('Calling Fetch AND HANDLE SCORE ', uid)
-  return function (dispatch, getState) {
+export function fetchAndHandleScore (uid = 1) {
+  console.log('Calling Fetch AND HANDLE SCORE')
+  /* return function (dispatch, getState) {
     dispatch(fetchingScore())
     return fetchScore(uid)
       .then((scoreInfo) => {
@@ -144,7 +144,7 @@ export function fetchAndHandleScore (uid) {
           return fetchUser(uid).then((user) => dispatch(addUser(uid, user)))
         }
       })
-  }
+  }*/
 }
 
 export function incrementAndHandleScore (amount) {
@@ -176,7 +176,7 @@ function usersScores (state = {}, action) {
     case FETCHING_SCORE_SUCCESS :
       return {
         ...state,
-        [action.id]: action.score,
+        // [action.id]: action.score,
       }
     case ADD_SCORES :
       return {
@@ -186,12 +186,12 @@ function usersScores (state = {}, action) {
     case INCREMENT_SCORE :
       return {
         ...state,
-        [action.id]: state[action.id] + action.amount,
+        // [action.id]: state[action.id] + action.amount,
       }
     case DECREMENT_SCORE :
       return {
         ...state,
-        [action.id]: state[action.id] - action.amount,
+        // [action.id]: state[action.id] - action.amount,
       }
     default :
       return state
